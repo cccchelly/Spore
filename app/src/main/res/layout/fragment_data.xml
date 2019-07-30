@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    
+    <LinearLayout
+        android:layout_marginTop="24dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        >
+
+        <LinearLayout
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginRight="@dimen/dp_5"
+            android:background="@drawable/data1"
+            android:gravity="center_horizontal"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_marginTop="@dimen/dp_10"
+                android:src="@drawable/capture"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="夜间拍摄"
+                android:textSize="@dimen/sp_14"
+                android:textColor="@color/text_4d4d4d"/>
+
+            <TextView
+                android:id="@+id/data_tv_dark_capture_status"
+                android:layout_marginTop="@dimen/dp_18"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="状态"
+                android:textSize="18dp"
+                android:textColor="@color/text_4d4d4d"/>
+
+            <com.alex.witAg.view.EaseSwitchButton
+                android:layout_marginBottom="@dimen/dp_10"
+                android:id="@+id/sb_light"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginLeft="@dimen/dp_5"
+            android:layout_marginRight="@dimen/dp_5"
+            android:background="@drawable/data2"
+            android:gravity="center_horizontal"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_marginTop="@dimen/dp_10"
+                android:src="@drawable/battrayvol"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="电池电压"
+                android:textSize="@dimen/sp_14"
+                android:textColor="@color/text_4d4d4d"/>
+
+            <TextView
+                android:id="@+id/data_tv_batvol_status"
+                android:layout_marginTop="@dimen/dp_18"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="状态"
+                android:textSize="18sp"
+                android:textColor="@color/text_4d4d4d"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginLeft="@dimen/dp_5"
+            android:layout_marginRight="@dimen/dp_5"
+            android:background="@drawable/data3"
+            android:gravity="center_horizontal"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_marginTop="@dimen/dp_10"
+                android:src="@drawable/sunvol"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="太阳能电压"
+                android:textSize="@dimen/sp_14"
+                android:textColor="@color/text_4d4d4d"/>
+
+            <TextView
+                android:id="@+id/data_tv_sunvvol_status"
+                android:layout_marginTop="@dimen/dp_18"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="状态"
+                android:textSize="18sp"
+                android:textColor="@color/text_4d4d4d"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+        android:layout_marginLeft="@dimen/dp_5"
+        android:layout_marginRight="@dimen/dp_5"
+            android:background="@drawable/data4"
+        android:gravity="center_horizontal"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_marginTop="@dimen/dp_10"
+            android:src="@drawable/dianjiban"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="电机状态"
+            android:textSize="@dimen/sp_14"
+            android:textColor="@color/text_4d4d4d"/>
+
+        <TextView
+            android:id="@+id/data_tv_dianji_status"
+            android:layout_marginTop="@dimen/dp_18"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="状态"
+            android:textSize="18sp"
+            android:textColor="@color/text_4d4d4d"/>
+
+    </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginLeft="@dimen/dp_5"
+            android:layout_marginRight="@dimen/dp_5"
+            android:background="@drawable/data5"
+            android:gravity="center_horizontal"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_marginTop="@dimen/dp_10"
+                android:src="@drawable/ic_weather"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/data_tv_msta"
+                android:layout_marginTop="@dimen/dp_8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="状态"
+                android:textSize="18sp"
+                android:textColor="@color/text_4d4d4d"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="温度"
+                android:textSize="@dimen/sp_14"
+                android:textColor="@color/text_4d4d4d"/>
+            <TextView
+                android:id="@+id/data_tv_temp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                tools:text="状态"
+                android:textSize="18sp"
+                android:textColor="@color/text_4d4d4d"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="湿度"
+                android:textSize="@dimen/sp_14"
+                android:textColor="@color/text_4d4d4d"/>
+            <TextView
+                android:id="@+id/data_tv_hum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                tools:text="状态"
+                android:textSize="18sp"
+                android:textColor="@color/text_4d4d4d"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginLeft="@dimen/dp_5"
+            android:layout_marginRight="@dimen/dp_10"
+            android:background="@drawable/data6"
+            android:gravity="center_horizontal"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_marginTop="@dimen/dp_10"
+                android:src="@drawable/ic_gps"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="GPS"
+                android:textSize="@dimen/sp_14"
+                android:textColor="@color/text_4d4d4d"/>
+
+            <TextView
+                android:id="@+id/data_tv_position"
+                android:layout_marginTop="16dp"
+                android:padding="8dp"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                tools:text="状态"
+                android:textSize="18sp"
+                android:textColor="@color/text_4d4d4d"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_marginRight="@dimen/dp_10"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <TextView
+            android:id="@+id/main_data_tv_last_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            tools:text="最后刷新时间"
+            android:textColor="@color/black"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+        <TextView
+            android:id="@+id/main_data_tv_refresh"
+            android:layout_marginRight="@dimen/dp_10"
+            android:text="刷新数据"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:background="@drawable/shape_btn_maincolor_conner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+</LinearLayout>

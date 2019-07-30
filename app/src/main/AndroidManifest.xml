@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.alex.witAg">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission
+        android:name="android.permission.DEVICE_POWER"
+        tools:ignore="ProtectedPermissions" />
+
+    <uses-feature android:name="android.hardware.location.gps" />
+    <uses-feature android:name="android.hardware.location.network" />
+    <!-- 外部存储读权限，调试工具加载本地补丁需要 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <!-- 用于进行网络定位 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!-- 用于访问GPS定位 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <!-- 用于获取运营商信息，用于支持提供运营商信息相关的接口 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- 用于访问wifi网络信息，wifi信息会用于进行网络定位 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!-- 用于获取wifi的获取权限，wifi信息会用来进行网络定位 -->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <!-- 用于访问网络，网络定位需要上网 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 用于读取手机当前的状态 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!-- 用于写入缓存数据到扩展存储卡 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- 用于申请调用A-GPS模块 -->
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+    <!-- 用于申请获取蓝牙信息进行室内定位 -->
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.RESTART_PACKAGES" />
+    <uses-permission android:name="android.permission.INSTALL_PACKAGES"/>
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+
+    <application
+        android:name=".SophixStubApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/app_logo"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:persistent="true"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        //阿里热修复
+        <service
+            android:name="com.taobao.sophix.aidl.DownloadService"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.taobao.hotfix.action" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </service>
+
+        <meta-data
+            android:name="com.taobao.android.hotfix.IDSECRET"
+            android:value="26064659" />
+        <meta-data
+            android:name="com.taobao.android.hotfix.APPSECRET"
+            android:value="1d792bc4d91ee25e34a2d832ca4d0e38" />
+        <meta-data
+            android:name="com.taobao.android.hotfix.RSASECRET"
+            android:value="MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC5wM654+yQ7GhLf+ejqddm9ZQ20fVewM6rMXTtzyVqzQNuShX8UH+ojZD41p2hlHp84c0E29VeRe2LuXd/IRvgzOTATctwH+RA01XQxHEiM8WVYRhyv9EpunghR8k64f5JXWMhQgtQQZQxQkh81TLeKgGShQYqo/gozv7Dfc0de2FOong+P7mWppES5TIjO1Bldt1UFmOBtrQtPkRR1ZOuH91EYlzKPZGkoqmnAG7YAb9mFdXqu4E/eErNCa4s5oO3/QKXIzA/HvF0iyLfZXLrwC8Z6V46Mlfhp7GHX1kXgozGwapjkce/r0lGP1eRywsQGo4j9foDR29GqG6hvukPAgMBAAECggEAdGCcJFLskA/NeB/2nM94KQWLip0YwfjCgvdFbwjtRHCVya+Y/q/gi1XGkmDD+cvwwfUmYfjpQVtGbNgSShAQS1OTrfgPkXwpoYPGrDmnN+p/zAs9KgeLoD03roIvTTjx/D0KMngSZoHvurzwdWWNrStcONQm/OgmPksRyqEytVjZ1xO9GxwzvftoubOHP1vHL1icLkxZP3cqT9uDIP0JnsxrNta7EN0472Ipz1j7dyOgzC6riUpHdndN/JgW2D3bb8dkOOfY2lkOk7g2f6v7zBdRQsaWAexLvGNGdatGTLnly+HfIfD02qbdxgAK/xbkUzGForYnmHfgsIVxJ+/RwQKBgQDotMG9xQ1uZzzLmwc6j8P9Y8xeC1MkZXKe/oKNTjOebX7tYipboHo9FNFlhz/sG9aXiJaP8B8Pwiu7hU90/8TBRz7RLI9MK2ii3vXaLZY4uRx5hSeHbJZdmuaJ5sBsvP8PGWMQtdf/sNWHgXe7Gi0ej1thPGAfW8/QcfK2aA+KaQKBgQDMWNoLKJwq2bpIaqXSv3b78xPxVm0PTaSPo8LakwGu2bE1sWA4LmzBZG3TkHv8QzgzA6Hj/lDSv1IRg0tF0YBOQ4kfYiw7pkR0QzEdWeI1lWdl6ZnbVsKSszIpPhm5QNmdaeLoj+xECGSj4t6y19H5tShDf32mF1KNvsAIsfw4twKBgA+1Y/6zdpylS21TIcHKQqiwO/N9QDeMwZgKBjYTuVhQe+j6X3Gf+6Bz706zOpVtq6a/CardwrsFmH4oGZ0ERvvlG1BzeZjitUWJV39K5IEfvdRWMLzrj5ryAe39LbApce5LAGz4WYRhI4jqLHLs6W7OrpR5xuNXB0hC6Od3TtVBAoGBAI5sOwRd+IJRH+mLEyoQsjAmGjcxom9xEQnf/FX08c5ZAY7HoqVljf04LueuowuOGiRMGtBaFyDboap9FMCDpOZnYbHS7bthRgK2Ngwb8nKgP+Gi784U6SXv6T0fgDRCw6lX/INUlDpSkzo6TDbf/wQIRBjPSdayGKKcWSF2U7F/AoGANX6rH/OpDjOwDVZeKwL6zEHhoKSjG5Kccsivcf30+dLTFHDleKbaOEsPbO1OU3OSXUtPuUuAMwA996ofy5yIKsHeapnjq4f7t8Sz5sRycXdkHpsITUvRgmqMXuPeYga0CAZQBsUcYcU1qb93W3wNyWeR475QZf0k3LHbPvhh+AU=" />
+        //baidumap
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="6aa80188274e9ce4088f716da8068158" />
+
+        <service android:name="com.amap.api.location.APSService" />
+        //mqttservice
+        <service android:name="org.eclipse.paho.android.service.MqttService" />
+
+        <activity
+            android:name=".ui.activity.SplashActivity"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.HOME" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.activity.MainActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".ui.activity.LoginActivity"
+            android:screenOrientation="landscape" />
+
+        <!--
+            <receiver
+            android:name=".utils.BootReceiver"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.RECEIVE_BOOT_COMPLETED">
+            <intent-filter>
+
+                &lt;!&ndash; 注册开机广播地址 &ndash;&gt;
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+
+                &lt;!&ndash;<category android:name="android.intent.category.DEFAULT" />&ndash;&gt;
+            </intent-filter>
+        </receiver>
+        -->
+
+        <service android:name=".service.CaptureService">
+            <intent-filter>
+                <action android:name="capture" />
+            </intent-filter>
+        </service>
+        <service android:name=".service.PostPicService">
+            <intent-filter>
+                <action android:name="postpic" />
+            </intent-filter>
+        </service>
+        <service android:name=".service.UpdateService">
+            <intent-filter>
+                <action android:name="update" />
+            </intent-filter>
+        </service>
+        <service android:name=".service.LocationService">
+            <intent-filter>
+                <action android:name="location" />
+            </intent-filter>
+        </service>
+        <service android:name=".service.MqttService">
+            <intent-filter>
+                <action android:name="mqtt" />
+            </intent-filter>
+        </service>
+        <service android:name=".service.PostMsgService">
+            <intent-filter>
+                <action android:name="postmsg" />
+            </intent-filter>
+        </service>
+
+        <receiver android:name=".receiver.UpdateReStartReceiver">
+            <intent-filter>
+                <action android:name="install_and_start" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+                <action android:name="android.intent.action.PACKAGE_REPLACED" />
+                <action android:name="android.intent.action.PACKAGE_ADDED" />
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+
+                <data android:scheme="package" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name=".ui.activity.ShowPicActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".ui.activity.TaskSettingActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".ui.activity.SetAccountActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".ui.activity.BindPhoneActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".ui.activity.ResetActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".ui.activity.SetIpActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".ui.activity.SetCompanyUrlActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".ui.activity.BindCompanyActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="landscape" />
+        <activity android:name=".ui.activity.PositionActivity" />
+        <activity android:name=".ui.activity.DebugActivity" />
+        <activity android:name=".ui.activity.TaskSettingNewActivity" />
+        <activity android:name=".ui.activity.PreviewActivity" />
+        <activity android:name=".ui.activity.ShowCaptureActivity"></activity>
+    </application>
+
+</manifest>
