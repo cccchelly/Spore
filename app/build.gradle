@@ -170,4 +170,8 @@ dependencies {
     compile files('src/main/KSJAndroidLibs/android/alicloud-android-utils-1.1.3.jar')
     compile files('src/main/KSJAndroidLibs/android/sophix.jar')
     compile files('src/main/KSJAndroidLibs/android/utdid4all-1.1.5.3_proguard.jar')
+
+}
+repositories {
+    mavenCentral()
 }

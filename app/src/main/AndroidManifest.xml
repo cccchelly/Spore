@@ -93,6 +93,12 @@
             android:exported="true"
             android:launchMode="singleTask"
             android:screenOrientation="landscape">
+
+        </activity>
+        <activity
+            android:name=".ui.activity.MainActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="landscape" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -101,10 +107,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ui.activity.MainActivity"
-            android:launchMode="singleTop"
-            android:screenOrientation="landscape" />
+
         <activity
             android:name=".ui.activity.LoginActivity"
             android:screenOrientation="landscape" />
