@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="16dp"
+    android:layout_marginTop="16dp"
+    android:layout_marginRight="20dp"
+    android:layout_marginBottom="23dp"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".ui.fragment.BaseMsgFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="37dp"
+        android:layout_marginTop="15dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/base_msg_tv_refresh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_storke14bd91_corner18_innerwhite"
+            android:drawableLeft="@mipmap/jcxx_sx"
+            android:drawablePadding="8dp"
+            android:paddingLeft="12dp"
+            android:paddingTop="9dp"
+            android:paddingRight="12dp"
+            android:paddingBottom="9dp"
+            android:text="刷新"
+            android:textColor="@color/text_14BD91"
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="最近刷新时间"
+            android:textColor="@color/text_888888"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/base_msg_tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="18dp"
+            android:text="2018-12-11 23:22:10"
+            android:textColor="@color/text_222222"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="37dp"
+        android:layout_marginTop="27dp"
+        android:layout_marginRight="37dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@mipmap/jcxx_dc"
+                android:drawablePadding="12dp"
+                android:gravity="center_vertical"
+                android:text="蓄电池电压:"
+                android:textColor="@color/text_666666"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/base_msg_tv_bat_power"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="18dp"
+                android:text="未知"
+                android:textColor="@color/text_14BD91"
+                android:textSize="21sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@mipmap/jcxx_tybdc"
+                android:drawablePadding="12dp"
+                android:gravity="center_vertical"
+                android:text="太阳板电压:"
+                android:textColor="@color/text_666666"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/base_msg_tv_sun_power"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="18dp"
+                android:text="0V"
+                android:textColor="@color/text_14BD91"
+                android:textSize="21sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@mipmap/jcxx_dqwd"
+                android:drawablePadding="12dp"
+                android:gravity="center_vertical"
+                android:text="当前温度:"
+                android:textColor="@color/text_666666"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/base_msg_tv_temp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="18dp"
+                android:text="未知"
+                android:textColor="@color/text_14BD91"
+                android:textSize="21sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="37dp"
+        android:layout_marginTop="27dp"
+        android:layout_marginRight="37dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@mipmap/jcxx_dqwd1"
+                android:drawablePadding="12dp"
+                android:gravity="center_vertical"
+                android:text="当前湿度:"
+                android:textColor="@color/text_666666"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/base_msg_tv_hum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="18dp"
+                android:text="未知"
+                android:textColor="@color/text_14BD91"
+                android:textSize="21sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@mipmap/jcxx_tybdc"
+                android:drawablePadding="12dp"
+                android:gravity="center_vertical"
+                android:text="雨控状态:"
+                android:textColor="@color/text_666666"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/base_msg_tv_rain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="18dp"
+                android:text="未知"
+                android:textColor="@color/text_14BD91"
+                android:textSize="21sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/base_msg_tv_error"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="37dp"
+        android:layout_marginTop="27dp"
+        android:textSize="18sp"
+        android:textColor="@color/text_666666"
+        android:text="当前错误：无"
+        />
+
+
+
+</LinearLayout>

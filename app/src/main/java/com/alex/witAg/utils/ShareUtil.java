@@ -3,15 +3,11 @@ package com.alex.witAg.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.text.TextUtils;
-import android.text.format.Time;
 
 import com.alex.witAg.App;
 import com.alex.witAg.AppContants;
 
 import java.text.SimpleDateFormat;
-import java.util.TreeMap;
-
-import bolts.Task;
 
 /**
  * Created by Administrator on 2018-03-28.
@@ -57,6 +53,10 @@ public class ShareUtil {
 
     private static final String taskTimeAreas = "taskTimeAreas";  //定时任务时间区域的列表
     private static final String taskTimeMins = "taskTimeMins";  //定时任务全部时间点的列表
+
+    private static final String lampTimeAreas = "lampTimeAreas";  //灯管开关任务时间区域的列表
+    private static final String lampTimeopen = "lampTimeopen";  //执行灯管开的时间点
+    private static final String lampTimeclose = "lampTimeclose";  //执行灯管关的时间点
 
     private static final String CameraType = "cameraType";  //相机种类
     private static final String seraIndex = "seraIndex";  //串口下标
@@ -474,5 +474,43 @@ public class ShareUtil {
     public static String getTimeMinStr(){
         return getShare().getString(taskTimeMins,null);
     }
+
+    /*灯管时间控制*/
+    //灯管定时任务区域列表
+    public static void  setLampTimeAreaStr(String timeAreaStr){
+        SharedPreferences.Editor editor = getShare().edit();
+        editor.putString(lampTimeAreas,timeAreaStr);
+        editor.apply();
+    }
+
+    public static String getLampTimeAreaStr(){
+        return getShare().getString(lampTimeAreas,null);
+    }
+
+
+    //灯管开关任务所有开始时间点的列表
+    public static void  setOpenTimeMinStr(String timeMinStr){
+        SharedPreferences.Editor editor = getShare().edit();
+        editor.putString(lampTimeopen,timeMinStr);
+        editor.apply();
+    }
+
+    public static String getOpenTimeMinStr(){
+        return getShare().getString(lampTimeopen,null);
+    }
+
+
+    //灯管开关任务所有关闭时间点的列表
+    public static void  setCloseTimeMinStr(String timeMinStr){
+        SharedPreferences.Editor editor = getShare().edit();
+        editor.putString(lampTimeclose,timeMinStr);
+        editor.apply();
+    }
+
+    public static String getCloseTimeMinStr(){
+        return getShare().getString(lampTimeclose,null);
+    }
+
+
 
 }

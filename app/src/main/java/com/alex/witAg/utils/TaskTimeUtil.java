@@ -1,13 +1,10 @@
 package com.alex.witAg.utils;
 
-import android.text.TextUtils;
 import android.util.Log;
 
 import com.alex.witAg.bean.TaskTimeBean;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-
-import org.litepal.util.LogUtil;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -16,11 +13,13 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * Created by Administrator on 2018-11-05.
+ * 定时拍照任务工具类
+ * 时间规则：设置时间段和间隔时间，在这个时间段内每隔间隔时间执行一次任务
+ * 方案：根据设置的时间段个间隔，把每个要执行的时间点算出来存到本地，任务实时判断当前时间是否在本地时间点列表里存在
  */
 
 public class TaskTimeUtil {
-    private static TaskTimeUtil taskTimeUtil = null;
+    private static volatile TaskTimeUtil taskTimeUtil = null;
 
     private TaskTimeUtil() {
     }

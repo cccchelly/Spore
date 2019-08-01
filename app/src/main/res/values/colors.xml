@@ -24,4 +24,15 @@
     <color name="text_4d4d4d">#4d4d4d</color>
     <color name="bg_14BD91">#14BD91</color>
     <color name="bg_006349">#006349</color>
+    <color name="text_14BD91">#14BD91</color>
+    <color name="text_888888">#888888</color>
+    <color name="text_222222">#222222</color>
+    <color name="text_666666">#666666</color>
+    <color name="bg_89F0D3">#89f0d3</color>
+    <color name="bg_4CBDE7">#4cbde7</color>
+    <color name="text_444444">#444444</color>
+    <color name="text_aaaaaa">#aaaaaa</color>
+    <color name="bg_dddddd">#dddddd</color>
+    <color name="text_c7c7c7">#c7c7c7</color>
+    <color name="bg_c7c7c7">#c7c7c7</color>
 </resources>

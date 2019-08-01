@@ -18,10 +18,8 @@ import com.alex.witAg.http.AppDataManager;
 import com.alex.witAg.http.network.Net;
 import com.alex.witAg.taskqueue.SeralTask;
 import com.alex.witAg.taskqueue.TaskQueue;
-import com.alex.witAg.ui.activity.MainActivity;
 import com.alex.witAg.utils.ActivityBrightnessManager;
 import com.alex.witAg.utils.AppMsgUtil;
-import com.alex.witAg.utils.DeviceInfoStrUtil;
 import com.alex.witAg.utils.MyLifecycleHandler;
 import com.alex.witAg.utils.ShareUtil;
 import com.amap.api.location.AMapLocation;
@@ -62,7 +60,7 @@ public class PostMsgService extends Service {
 
             handler.postDelayed(runnable, ShareUtil.getPostTaskTime());
 
-            taskQueue.add(new SeralTask(DeviceInfoStrUtil.GET_DEVICE_MSG));
+            taskQueue.add(new SeralTask(AppContants.commands.qingqiuxinxi));
 
             Log.i("==post_msg===","post_msg.");
             PostMsgBean postMsgBean = new PostMsgBean();

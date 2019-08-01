@@ -13,7 +13,6 @@ import com.alex.witAg.R;
 import com.alex.witAg.base.BaseFragment;
 import com.alex.witAg.presenter.AboutPresenter;
 import com.alex.witAg.presenter.viewImpl.IAboutView;
-import com.alex.witAg.utils.AppMsgUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -37,7 +36,7 @@ public class AboutFragment extends BaseFragment<AboutPresenter, IAboutView> impl
 
     @Override
     protected void init(View view, @Nullable Bundle savedInstanceState) {
-        mImei.setText("设备号："+AppMsgUtil.getIMEI(getActivity()));
+        //mImei.setText("设备号："+AppMsgUtil.getIMEI(getActivity()));
     }
 
     @Override

@@ -6,13 +6,11 @@ import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.alex.witAg.App;
 import com.alex.witAg.AppContants;
 import com.alex.witAg.R;
 import com.alex.witAg.base.BaseActivity;
@@ -21,29 +19,23 @@ import com.alex.witAg.base.BaseResponse;
 import com.alex.witAg.bean.HomeBean;
 import com.alex.witAg.bean.PostMsgBean;
 import com.alex.witAg.bean.PostMsgResultBean;
-import com.alex.witAg.bean.TaskTimeBean;
 import com.alex.witAg.http.AppDataManager;
 import com.alex.witAg.http.network.Net;
 import com.alex.witAg.presenter.MainPresenter;
 import com.alex.witAg.presenter.viewImpl.IMainView;
 import com.alex.witAg.ui.fragment.AboutFragment;
-import com.alex.witAg.ui.fragment.ControlFragment;
-import com.alex.witAg.ui.fragment.DataFragment;
-import com.alex.witAg.ui.fragment.HomeFragment;
-import com.alex.witAg.ui.fragment.SettingFragment;
-import com.alex.witAg.utils.AppMsgUtil;
+import com.alex.witAg.ui.fragment.BaseMsgFragment;
+import com.alex.witAg.ui.fragment.LampControlFragment;
+import com.alex.witAg.ui.fragment.SControlFragment;
+import com.alex.witAg.ui.fragment.TakePhotoFragment;
 import com.alex.witAg.utils.ShareUtil;
 import com.alex.witAg.utils.TaskServiceUtil;
-import com.alex.witAg.utils.TaskTimeUtil;
-import com.alex.witAg.utils.TimeUtils;
-import com.alex.witAg.utils.ToastUtils;
 import com.alex.witAg.view.LeftTabView;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.orhanobut.logger.Logger;
 
 import org.litepal.tablemanager.Connector;
-import org.litepal.util.LogUtil;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -64,10 +56,10 @@ public class MainActivity extends BaseActivity<MainPresenter, IMainView> impleme
     View mTopView;
     @BindView(R.id.main_rl_topbar)
     RelativeLayout mRlTopbar;
-    private HomeFragment mHomeFragment;
-    private SettingFragment mSettingFragment;
-    private DataFragment mDataFragment;
-    private ControlFragment mControlFragment;
+    private BaseMsgFragment mBaseMsgFragment;
+    private LampControlFragment mLampConFragment;
+    private SControlFragment mSControlFragment;
+    private TakePhotoFragment mTakePhotoFragment;
     private AboutFragment mAboutFragment;
     SQLiteDatabase db = Connector.getDatabase();
 
@@ -108,7 +100,7 @@ public class MainActivity extends BaseActivity<MainPresenter, IMainView> impleme
         postMsgBean.setHighsta(ShareUtil.getCaptureHignSta());
         postMsgBean.setSta(ShareUtil.getDeviceStatue());
         postMsgBean.setError(ShareUtil.getDeviceError());
-        postMsgBean.setImei(AppMsgUtil.getIMEI(App.getAppContext()));
+        //postMsgBean.setImei(AppMsgUtil.getIMEI(App.getAppContext()));
         postMsgBean.setLatitude(ShareUtil.getLatitude() + "");
         postMsgBean.setLongitude(ShareUtil.getLongitude() + "");
         postMsgBean.setFirstStart(true);
@@ -139,49 +131,49 @@ public class MainActivity extends BaseActivity<MainPresenter, IMainView> impleme
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
             switch (position) {
-                //首页
+                //基础数据
                 case 0:
-                    transaction.hide(mDataFragment)
-                            .hide(mSettingFragment)
-                            .hide(mControlFragment)
+                    transaction.hide(mSControlFragment)
+                            .hide(mLampConFragment)
+                            .hide(mTakePhotoFragment)
                             .hide(mAboutFragment)
-                            .show(mHomeFragment)
+                            .show(mBaseMsgFragment)
                             .commitAllowingStateLoss();
                     break;
-                //实时数据
+                //灯头控制
                 case 1:
+                    transaction.hide(mBaseMsgFragment)
+                            .hide(mSControlFragment)
+                            .hide(mTakePhotoFragment)
+                            .hide(mAboutFragment)
+                            .show(mLampConFragment)
+                            .commitAllowingStateLoss();
 
-                    transaction.hide(mHomeFragment)
-                            .hide(mSettingFragment)
-                            .hide(mControlFragment)
-                            .hide(mAboutFragment)
-                            .show(mDataFragment)
-                            .commitAllowingStateLoss();
                     break;
-                //系统设置
+                //单步控制
                 case 2:
-                    transaction.hide(mHomeFragment)
-                            .hide(mDataFragment)
-                            .hide(mControlFragment)
+                    transaction.hide(mBaseMsgFragment)
+                            .hide(mLampConFragment)
+                            .hide(mTakePhotoFragment)
                             .hide(mAboutFragment)
-                            .show(mSettingFragment)
+                            .show(mSControlFragment)
                             .commitAllowingStateLoss();
                     break;
-                //手动控制
+                //拍照
                 case 3:
-                    transaction.hide(mHomeFragment)
-                            .hide(mDataFragment)
-                            .hide(mSettingFragment)
+                    transaction.hide(mBaseMsgFragment)
+                            .hide(mSControlFragment)
+                            .hide(mLampConFragment)
                             .hide(mAboutFragment)
-                            .show(mControlFragment)
+                            .show(mTakePhotoFragment)
                             .commitAllowingStateLoss();
                     break;
                 //关于我们
                 case 4:
-                    transaction.hide(mHomeFragment)
-                            .hide(mDataFragment)
-                            .hide(mSettingFragment)
-                            .hide(mControlFragment)
+                    transaction.hide(mBaseMsgFragment)
+                            .hide(mSControlFragment)
+                            .hide(mLampConFragment)
+                            .hide(mTakePhotoFragment)
                             .show(mAboutFragment)
                             .commitAllowingStateLoss();
                     break;
@@ -198,22 +190,22 @@ public class MainActivity extends BaseActivity<MainPresenter, IMainView> impleme
         transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
         int currentTabPosition = 0;
         if (savedInstanceState != null) {//内存重启
-            mHomeFragment = (HomeFragment) getSupportFragmentManager().findFragmentByTag("HomeFragment");
-            mSettingFragment = (SettingFragment) getSupportFragmentManager().findFragmentByTag("SettingFragment");
-            mDataFragment = (DataFragment) getSupportFragmentManager().findFragmentByTag("DataFragment");
-            mControlFragment = (ControlFragment) getSupportFragmentManager().findFragmentByTag("ControlFragment");
+            mBaseMsgFragment = (BaseMsgFragment) getSupportFragmentManager().findFragmentByTag("HomeFragment");
+            mLampConFragment = (LampControlFragment) getSupportFragmentManager().findFragmentByTag("SettingFragment");
+            mSControlFragment = (SControlFragment) getSupportFragmentManager().findFragmentByTag("DataFragment");
+            mTakePhotoFragment = (TakePhotoFragment) getSupportFragmentManager().findFragmentByTag("ControlFragment");
             mAboutFragment = (AboutFragment) getSupportFragmentManager().findFragmentByTag("AboutFragment");
             currentTabPosition = savedInstanceState.getInt(AppContants.HOME_CURRENT_TAB_POSITION);
         } else {
-            mHomeFragment = new HomeFragment();
-            mSettingFragment = new SettingFragment();
-            mDataFragment = new DataFragment();
-            mControlFragment = new ControlFragment();
+            mBaseMsgFragment = new BaseMsgFragment();
+            mLampConFragment = new LampControlFragment();
+            mSControlFragment = new SControlFragment();
+            mTakePhotoFragment = new TakePhotoFragment();
             mAboutFragment = new AboutFragment();
-            transaction.add(R.id.fl_container, mHomeFragment, "HomeFragment");
-            transaction.add(R.id.fl_container, mSettingFragment, "SettingFragment");
-            transaction.add(R.id.fl_container, mDataFragment, "DataFragment");
-            transaction.add(R.id.fl_container, mControlFragment, "ControlFragment");
+            transaction.add(R.id.fl_container, mBaseMsgFragment, "HomeFragment");
+            transaction.add(R.id.fl_container, mLampConFragment, "SettingFragment");
+            transaction.add(R.id.fl_container, mSControlFragment, "DataFragment");
+            transaction.add(R.id.fl_container, mTakePhotoFragment, "ControlFragment");
             transaction.add(R.id.fl_container, mAboutFragment, "AboutFragment");
         }
         transaction.commit();

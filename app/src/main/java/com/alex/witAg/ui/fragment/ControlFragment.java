@@ -1,5 +1,6 @@
 package com.alex.witAg.ui.fragment;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -85,13 +86,18 @@ public class ControlFragment extends BaseFragment<ControlPresenter, IControlView
     EaseSwitchButton mSeraSwtBtn;
     @BindView(R.id.control_tv_sera_statues)
     TextView tvSeraStu;
-    @BindView(R.id.control_spinner_camera)
-    NiceSpinner mSpinnerCamera;
-    Unbinder unbinder;
+
+
     @BindView(R.id.control_tv_preview)
     TextView mTvPreview;
+    @BindView(R.id.control_spinner_camera)
+    NiceSpinner mSpinnerCamera;
     @BindView(R.id.control_spinner_sera)
     NiceSpinner mSpinnerSera;
+
+    Unbinder unbinder;
+
+
     private CaptureTaskUtil captureTaskUtil;
 
     private CameraManager cameraManager;
@@ -107,6 +113,7 @@ public class ControlFragment extends BaseFragment<ControlPresenter, IControlView
 
     }
 
+    @SuppressLint("InvalidWakeLockTag")
     @Override
     protected void init(View view, @Nullable Bundle savedInstanceState) {
         pm = (PowerManager) (getActivity().getSystemService(Context.POWER_SERVICE));

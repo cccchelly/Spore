@@ -30,7 +30,7 @@
             <TextView
                 android:textColor="@color/white"
                 android:text="基础信息"
-                android:textSize="22sp"
+                android:textSize="21sp"
                 android:drawablePadding="18dp"
                 android:drawableLeft="@mipmap/jcxx"
                 android:layout_width="wrap_content"
@@ -54,7 +54,7 @@
             <TextView
                 android:textColor="@color/white"
                 android:text="时间控制"
-                android:textSize="22sp"
+                android:textSize="21sp"
                 android:drawablePadding="18dp"
                 android:drawableLeft="@mipmap/sjkz"
                 android:layout_width="wrap_content"
@@ -77,7 +77,7 @@
             <TextView
                 android:textColor="@color/white"
                 android:text="单步控制"
-                android:textSize="22sp"
+                android:textSize="21sp"
                 android:drawablePadding="18dp"
                 android:drawableLeft="@mipmap/dbkz"
                 android:layout_width="wrap_content"
@@ -98,7 +98,7 @@
             <TextView
                 android:textColor="@color/white"
                 android:text="拍照"
-                android:textSize="22sp"
+                android:textSize="21sp"
                 android:drawablePadding="18dp"
                 android:drawableLeft="@mipmap/pz"
                 android:layout_width="wrap_content"

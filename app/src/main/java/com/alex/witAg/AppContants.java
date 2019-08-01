@@ -1,8 +1,5 @@
 package com.alex.witAg;
 
-import android.icu.util.TimeUnit;
-
-import com.alex.witAg.utils.TimeUtils;
 import com.catchbest.KSJ_BAYERMODE;
 import com.catchbest.KSJ_TRIGGRMODE;
 import com.catchbest.KSJ_WB_MODE;
@@ -105,4 +102,50 @@ public interface AppContants {
         public static String FROM_TASK = "fromtask";
         public static String FROM_Hand = "fromhand";
     }
+
+    interface commands{
+        //雨仓开
+        String yucangkai = "";
+        //雨仓关
+        String yucangguan = "";
+        //加热烘烤开
+        String jiarekai = "";
+        //加热烘烤关
+        String jiareguan = "";
+        //虫仓漏虫开
+        String chongcangkai = "";
+        //虫仓漏虫关
+        String chongcangguan = "";
+        //清虫位置置顶-复位清虫
+        String fuweiqingchong = "";
+        //清虫位置置底-正在清虫
+        String zhengzaiqingchong = "";
+        //传送带位于接虫位置
+        String csd_jiechong = "";
+        //传送带位于拍照位置
+        String csd_paizhao = "";
+        //传送带完成一个周期的清理
+        String csd_qingli = "";
+        //相机补光灯打开
+        String buguangdeng_kai = "";
+        //相机补光灯关闭
+        String buguangdeng_guan = "";
+        //诱虫灯管开
+        String dengguan_kai = "";
+        //诱虫灯管关
+        String dengguan_guan = "";
+        //复位整机
+        String fuweizhengji = "";
+        //设备紧急停止
+        String shebei_ting = "";
+        //设备从紧急停止状态恢复正常工作
+        String shebei_huifu = "";
+        //旋转仓换仓
+        String huancang = "";
+        //旋转仓复位
+        String fuweixzc = "";
+        //请求本机信息
+        String qingqiuxinxi = "";
+    }
+
 }

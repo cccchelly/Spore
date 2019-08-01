@@ -13,6 +13,7 @@ import com.alex.witAg.bean.PicPathsBean;
 import com.alex.witAg.utils.LogUtil;
 import com.alex.witAg.utils.ShareUtil;
 import com.alex.witAg.utils.TimeUtils;
+import com.alex.witAg.utils.ToastUtils;
 import com.catchbest.Callback;
 import com.catchbest.CameraBean;
 import com.catchbest.ConfirmDialog;
@@ -111,6 +112,7 @@ public class KsjCamera implements ICamera {
                 }
                 //checkPermission();
             }else {
+                ToastUtils.showToast("设备未Root");
                 // sb_switch.setStatus(false);    1
                 ConfirmDialog dialog = new ConfirmDialog(App.getAppContext(), new Callback() {
                     @Override
@@ -119,7 +121,7 @@ public class KsjCamera implements ICamera {
                     }
                 });
                 dialog.setContent("请Root您的系统再进行测试。");
-                dialog.show();
+                //dialog.show();
             }
         } else {
             //root模式

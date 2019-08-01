@@ -65,4 +65,9 @@
         <item name="android:backgroundDimEnabled">true</item>
     </style>
 
+    <style name="quick_option_dialog"
+        parent="@style/Theme.AppCompat.Dialog">
+        <item name="android:windowBackground">@color/white</item>
+    </style>
+
 </resources>

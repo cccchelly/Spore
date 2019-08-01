@@ -1,0 +1,557 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragment.SControlFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/shape_single_contorl_bg"
+        android:layout_margin="16dp"
+        android:orientation="vertical">
+
+        <!--雨仓开关  加热烘烤-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="37dp"
+            android:layout_marginRight="37dp"
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:textColor="@color/text_222222"
+                android:text="雨仓开关"
+                />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:textColor="@color/text_222222"
+                android:text="加热烘烤"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="19dp"
+            android:layout_marginBottom="30dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_marginLeft="37dp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/scontrol_tv_yucang_kai"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textColor="@color/text_444444"
+                    android:gravity="center"
+                    android:text="开"
+                    android:drawableTop="@mipmap/dbkz_k"
+                    />
+
+                <TextView
+                    android:id="@+id/scontrol_tv_yucang_guan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="32dp"
+                    android:textSize="20sp"
+                    android:textColor="@color/text_444444"
+                    android:gravity="center"
+                    android:text="关"
+                    android:drawableTop="@mipmap/dbkz_g"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_marginRight="37dp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/scontrol_tv_jiare_kai"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textColor="@color/text_444444"
+                    android:gravity="center"
+                    android:text="开"
+                    android:drawableTop="@mipmap/dbkz_k"
+                    />
+
+                <TextView
+                    android:id="@+id/scontrol_tv_jiare_guan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="89dp"
+                    android:textSize="20sp"
+                    android:textColor="@color/text_444444"
+                    android:gravity="center"
+                    android:text="关"
+                    android:drawableTop="@mipmap/dbkz_g"
+                    />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!--虫仓漏虫  清虫位置-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="37dp"
+            android:layout_marginRight="37dp"
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:textColor="@color/text_222222"
+                android:text="虫仓漏虫"
+                />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:textColor="@color/text_222222"
+                android:text="清虫位置"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="19dp"
+            android:layout_marginBottom="30dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_marginLeft="37dp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/scontrol_tv_chongcang_kai"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textColor="@color/text_444444"
+                    android:gravity="center"
+                    android:text="开"
+                    android:drawableTop="@mipmap/dbkz_k"
+                    />
+
+                <TextView
+                    android:id="@+id/scontrol_tv_chongcang_guan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="32dp"
+                    android:textSize="20sp"
+                    android:textColor="@color/text_444444"
+                    android:gravity="center"
+                    android:text="关"
+                    android:drawableTop="@mipmap/dbkz_g"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_marginRight="37dp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/scontrol_tv_fuweiqingchong"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textColor="@color/text_444444"
+                    android:gravity="center"
+                    android:text="置顶-复位清虫"
+                    android:drawableTop="@mipmap/dbkz_fw"
+                    />
+
+                <TextView
+                    android:id="@+id/scontrol_tv_zhengzaiqingchong"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="89dp"
+                    android:textSize="20sp"
+                    android:textColor="@color/text_444444"
+                    android:gravity="center"
+                    android:text="置底-正在清虫"
+                    android:drawableTop="@mipmap/dbkz_zzql"
+                    />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!--传送带-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="37dp"
+            android:layout_marginRight="37dp"
+            android:layout_marginTop="30dp"
+            android:textSize="22sp"
+            android:textColor="@color/text_222222"
+            android:text="传送带"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="19dp"
+            android:layout_marginBottom="30dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_marginLeft="37dp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/scontrol_tv_csd_jiechong"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textColor="@color/text_444444"
+                    android:gravity="center"
+                    android:text="接虫位置"
+                    android:drawableTop="@mipmap/dbkz_k"
+                    />
+
+                <TextView
+                    android:id="@+id/scontrol_tv_csd_paizhao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="32dp"
+                    android:textSize="20sp"
+                    android:textColor="@color/text_444444"
+                    android:gravity="center"
+                    android:text="拍照位置"
+                    android:drawableTop="@mipmap/dbkz_g"
+                    />
+
+                <TextView
+                    android:id="@+id/scontrol_tv_csd_qingli"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="32dp"
+                    android:textSize="20sp"
+                    android:textColor="@color/text_444444"
+                    android:gravity="center"
+                    android:text="周期清理"
+                    android:drawableTop="@mipmap/dbkz_fw"
+                    />
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/white"/>
+
+        <!--相机补光灯  诱虫灯管-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="37dp"
+            android:layout_marginRight="37dp"
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:textColor="@color/text_222222"
+                android:text="相机补光灯"
+                />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:textColor="@color/text_222222"
+                android:text="诱虫灯管"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="19dp"
+            android:layout_marginBottom="30dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_marginLeft="37dp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/scontrol_tv_buguangdeng_kai"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textColor="@color/text_444444"
+                    android:gravity="center"
+                    android:text="开"
+                    android:drawableTop="@mipmap/dbkz_k"
+                    />
+
+                <TextView
+                    android:id="@+id/scontrol_tv_buguangdeng_guan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="32dp"
+                    android:textSize="20sp"
+                    android:textColor="@color/text_444444"
+                    android:gravity="center"
+                    android:text="关"
+                    android:drawableTop="@mipmap/dbkz_g"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_marginRight="37dp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/scontrol_tv_dengguan_kai"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textColor="@color/text_444444"
+                    android:gravity="center"
+                    android:text="开"
+                    android:drawableTop="@mipmap/dbkz_k"
+                    />
+
+                <TextView
+                    android:id="@+id/scontrol_tv_dengguan_guan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="89dp"
+                    android:textSize="20sp"
+                    android:textColor="@color/text_444444"
+                    android:gravity="center"
+                    android:text="关"
+                    android:drawableTop="@mipmap/dbkz_g"
+                    />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/white"/>
+
+        <!--复位整机  设备-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="37dp"
+            android:layout_marginRight="37dp"
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:textColor="@color/text_222222"
+                android:text="复位整机"
+                />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:textColor="@color/text_222222"
+                android:text="设备"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="19dp"
+            android:layout_marginBottom="30dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_marginLeft="37dp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/scontrol_tv_fuweizhengji"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textColor="@color/text_444444"
+                    android:gravity="center"
+                    android:text="复位"
+                    android:drawableTop="@mipmap/dbkz_fw"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_marginRight="37dp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/scontrol_tv_shebei_ting"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textColor="@color/text_444444"
+                    android:gravity="center"
+                    android:text="紧急停止"
+                    android:drawableTop="@mipmap/dbkz_jjtz"
+                    />
+
+                <TextView
+                    android:id="@+id/scontrol_tv_shebei_huifu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="89dp"
+                    android:textSize="20sp"
+                    android:textColor="@color/text_444444"
+                    android:gravity="center"
+                    android:text="恢复正常"
+                    android:drawableTop="@mipmap/dbkz_hfzc"
+                    />
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/white"/>
+
+        <!--旋转仓  请求本机信息-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="37dp"
+            android:layout_marginRight="37dp"
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:textColor="@color/text_222222"
+                android:text="旋转仓"
+                />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:textColor="@color/text_222222"
+                android:text="请求本机信息"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="19dp"
+            android:layout_marginBottom="30dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_marginLeft="37dp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/scontrol_tv_huancang"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textColor="@color/text_444444"
+                    android:gravity="center"
+                    android:text="换仓"
+                    android:drawableTop="@mipmap/dbkz_hc"
+                    />
+
+                <TextView
+                    android:id="@+id/scontrol_tv_fuweixzc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="32dp"
+                    android:textSize="20sp"
+                    android:textColor="@color/text_444444"
+                    android:gravity="center"
+                    android:text="复位"
+                    android:drawableTop="@mipmap/dbkz_fw"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_marginRight="37dp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/scontrol_tv_qingqiuxinxi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textColor="@color/text_444444"
+                    android:gravity="center"
+                    android:text="请求本机信息"
+                    android:drawableTop="@mipmap/dbkz_qqxx"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</android.support.v4.widget.NestedScrollView>

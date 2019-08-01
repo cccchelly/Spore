@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="16dp"
+    android:background="@color/white"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="24dp"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
+        android:paddingBottom="29dp"
+        android:orientation="vertical"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:text="设置相机"/>
+            <org.angmarch.views.NiceSpinner
+                android:id="@+id/control_spinner_camera"
+                android:layout_marginLeft="6dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:text="串口"
+                />
+            <org.angmarch.views.NiceSpinner
+                android:id="@+id/control_spinner_sera"
+                android:layout_marginLeft="6dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/control_tv_preview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="实时预览"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:textSize="@dimen/sp_14"
+                android:layout_marginLeft="@dimen/dp_12"
+                android:background="@drawable/shape_single_contorl_bg"
+                android:textColor="@color/white"
+                />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:textSize="22sp"
+            android:textColor="@color/text_222222"
+            android:text="拍照"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="21dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/takephoto_tv_capture"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:textColor="@color/text_444444"
+                android:text="拍照"
+                android:drawableTop="@mipmap/pz_sjsc"
+                />
+
+            <TextView
+                android:id="@+id/takephoto_tv_post"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginLeft="49dp"
+                android:textSize="20sp"
+                android:textColor="@color/text_444444"
+                android:text="数据上传"
+                android:drawableTop="@mipmap/pz_sjsc"
+                />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="41dp"
+            android:textSize="21sp"
+            android:textColor="@color/text_444444"
+            android:text="时间段："
+            />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/task_setting_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            >
+        </android.support.v7.widget.RecyclerView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_marginTop="20dp">
+
+            <LinearLayout
+                android:layout_width="267dp"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:background="@mipmap/edt_bg"
+                >
+                <TextView
+                    android:id="@+id/set_capture_tv_choose_time"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:paddingLeft="11dp"
+                    android:paddingRight="11dp"
+                    android:textSize="20sp"
+                    android:textColor="@color/text_222222"
+                    android:text="选择时间"
+                    android:gravity="center"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="7dp"
+                    android:text="开始"
+                    android:textSize="20sp"
+                    android:textColor="@color/text_aaaaaa"
+                    />
+            </LinearLayout>
+
+            <View
+                android:layout_width="48dp"
+                android:layout_height="3dp"
+                android:background="@color/bg_dddddd"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                />
+
+            <LinearLayout
+                android:layout_width="267dp"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:background="@mipmap/edt_bg"
+                >
+                <TextView
+                    android:id="@+id/set_capture_tv_choose_end_time"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:paddingLeft="11dp"
+                    android:paddingRight="11dp"
+                    android:textSize="20sp"
+                    android:textColor="@color/text_222222"
+                    android:text="选择时间"
+                    android:gravity="center"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="7dp"
+                    android:text="结束"
+                    android:textSize="20sp"
+                    android:textColor="@color/text_aaaaaa"
+                    />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_marginTop="19dp"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="19sp"
+                android:textColor="@color/text_444444"
+                android:text="间隔分钟："
+                />
+
+            <EditText
+                android:id="@+id/set_capture_edt_time"
+                android:layout_width="116dp"
+                android:layout_height="44dp"
+                android:maxLines="1"
+                android:inputType="number"
+                android:background="@mipmap/edt_bg"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:textSize="19sp"
+                android:textColor="@color/text_444444"
+                android:text="分钟"
+                />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="64dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/set_capture_tv_sure"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="73dp"
+                    android:paddingRight="73dp"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:background="@color/text_14BD91"
+                    android:layout_marginRight="67dp"
+                    android:text="添加时间"/>
+                <TextView
+                    android:id="@+id/set_capture_tv_cancle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="73dp"
+                    android:paddingRight="73dp"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:background="@color/text_c7c7c7"
+                    android:text="重启任务"/>
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</android.support.v4.widget.NestedScrollView>
