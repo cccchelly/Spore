@@ -98,54 +98,68 @@ public interface AppContants {
     }
 
     interface CaptureFrom{
-        public static  String from = "fromtask";
-        public static String FROM_TASK = "fromtask";
-        public static String FROM_Hand = "fromhand";
+        String from = "fromtask";
+        String FROM_TASK = "fromtask";
+        String FROM_Hand = "fromhand";
     }
 
     interface commands{
         //雨仓开
-        String yucangkai = "";
+        String yucangkai = "STA:01,TL:000,MODE_T:0";
         //雨仓关
-        String yucangguan = "";
+        String yucangguan = "STA:02,TL:000,MODE_T:0";
         //加热烘烤开
-        String jiarekai = "";
+        String jiarekai = "STA:03,TL:000,MODE_T:0";
         //加热烘烤关
-        String jiareguan = "";
-        //虫仓漏虫开
-        String chongcangkai = "";
-        //虫仓漏虫关
-        String chongcangguan = "";
+        String jiareguan = "STA:04,TL:000,MODE_T:0";
+        //虫仓2漏虫开
+        String chongcang2kai = "STA:05,TL:000,MODE_T:0";
+        //虫仓2漏虫关
+        String chongcang2guan = "STA:06,TL:000,MODE_T:0";
         //清虫位置置顶-复位清虫
-        String fuweiqingchong = "";
+        String fuweiqingchong = "STA:07,TL:000,MODE_T:0";
         //清虫位置置底-正在清虫
-        String zhengzaiqingchong = "";
+        String zhengzaiqingchong = "STA:08,TL:000,MODE_T:0";
         //传送带位于接虫位置
-        String csd_jiechong = "";
+        String csd_jiechong = "STA:09,TL:000,MODE_T:0";
         //传送带位于拍照位置
-        String csd_paizhao = "";
+        String csd_paizhao = "STA:10,TL:000,MODE_T:0";
         //传送带完成一个周期的清理
-        String csd_qingli = "";
+        String csd_qingli = "STA:11,TL:000,MODE_T:0";
         //相机补光灯打开
-        String buguangdeng_kai = "";
+        String buguangdeng_kai = "STA:12,TL:000,MODE_T:0";
         //相机补光灯关闭
-        String buguangdeng_guan = "";
+        String buguangdeng_guan = "STA:13,TL:000,MODE_T:0";
         //诱虫灯管开
-        String dengguan_kai = "";
+        String dengguan_kai = "STA:14,TL:000,MODE_T:0";
         //诱虫灯管关
-        String dengguan_guan = "";
+        String dengguan_guan = "STA:15,TL:000,MODE_T:0";
         //复位整机
-        String fuweizhengji = "";
+        String fuweizhengji = "STA:16,TL:000,MODE_T:0";
         //设备紧急停止
-        String shebei_ting = "";
+        String shebei_ting = "STA:17,TL:000,MODE_T:0";
         //设备从紧急停止状态恢复正常工作
-        String shebei_huifu = "";
-        //旋转仓换仓
-        String huancang = "";
+        String shebei_huifu = "STA:18,TL:000,MODE_T:0";
+        //旋转仓计数
+        String jishuxzc = "STA:22,TL:000,MODE_T:0";
         //旋转仓复位
-        String fuweixzc = "";
+        String fuweixzc = "STA:23,TL:000,MODE_T:0";
         //请求本机信息
-        String qingqiuxinxi = "";
+        String qingqiuxinxi = "STA:19,TL:000,MODE_T:0";
+        //虫仓1漏虫开
+        String chongcang1kai = "STA:25,TL:000,MODE_T:0";
+        //虫仓1漏虫关
+        String chongcang1guan = "STA:26,TL:000,MODE_T:0";
+
+
+        //请求开始拍照流程
+        String kaishipaizhao = "STA:24,TL:000,MODE_T:0";
+
+        //时控 进入诱虫状态
+        String shikongkai = "STA:21,TL:000,MODE_T:1";
+        //时控 关闭诱虫状态
+        String shikongguan = "STA:21,TL:000,MODE_T:2";
+
     }
 
 }

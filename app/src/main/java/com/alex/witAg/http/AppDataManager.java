@@ -25,8 +25,6 @@ import com.alex.witAg.http.network.IApi;
 import com.alex.witAg.http.network.Net;
 
 import io.reactivex.Observable;
-import okhttp3.MultipartBody;
-import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 
 /**
@@ -74,8 +72,8 @@ public final class AppDataManager implements IDataManager{
     }
 
     @Override
-    public Observable<BaseResponse<UpdateMsgBean>> getVersion(String token, String versionCode) {
-        return mIApi.getVersion(token,versionCode);
+    public Observable<BaseResponse<UpdateMsgBean>> getVersion(String token, String versionCode,String type) {
+        return mIApi.getVersion(token,versionCode,type);
     }
 
 

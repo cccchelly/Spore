@@ -8,13 +8,11 @@ import android.net.Uri;
 import android.util.Log;
 
 import com.alex.witAg.App;
-import com.alex.witAg.AppContants;
 import com.alex.witAg.base.BaseObserver;
 import com.alex.witAg.base.BaseResponse;
 import com.alex.witAg.bean.UpdateMsgBean;
 import com.alex.witAg.http.AppDataManager;
 import com.alex.witAg.http.network.Net;
-import com.alex.witAg.receiver.UpdateReStartReceiver;
 import com.alex.witAg.ui.activity.SplashActivity;
 import com.google.gson.Gson;
 
@@ -29,8 +27,6 @@ import ezy.boost.update.UpdateInfo;
 import ezy.boost.update.UpdateManager;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
-
-import static android.content.Context.ALARM_SERVICE;
 
 /**
  * Created by Administrator on 2018-04-16.
@@ -53,7 +49,7 @@ public class AppUpdateUtil {
 
     private static void getVersionJsonStr(boolean isManual, boolean hasUpdate, boolean isForce, boolean isSilent, boolean isIgnorable, int notifyId, Context context) {
         AppDataManager.getInstence(Net.URL_KIND_COMPANY)
-                .getVersion(ShareUtil.getToken(), AppMsgUtil.getVersionCode(context) + "")
+                .getVersion(ShareUtil.getToken(), AppMsgUtil.getVersionCode(context) + "","3")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new BaseObserver<BaseResponse<UpdateMsgBean>>() {
@@ -168,5 +164,6 @@ public class AppUpdateUtil {
         System.exit(0);
         System.gc();
     }
+
 
 }

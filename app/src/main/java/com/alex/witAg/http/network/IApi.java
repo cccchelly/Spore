@@ -1,7 +1,5 @@
 package com.alex.witAg.http.network;
 
-import android.content.Intent;
-
 import com.alex.witAg.base.BaseResponse;
 import com.alex.witAg.bean.BaseSettingRequestBean;
 import com.alex.witAg.bean.BaseSettingResponseBean;
@@ -21,17 +19,12 @@ import com.alex.witAg.bean.PostTaskMsgBean;
 import com.alex.witAg.bean.QiNiuTokenBean;
 import com.alex.witAg.bean.SendSmsResponseBean;
 import com.alex.witAg.bean.UpdateMsgBean;
-import com.alex.witAg.utils.ShareUtil;
 
 import io.reactivex.Observable;
-import okhttp3.MultipartBody;
-import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
-import retrofit2.http.Multipart;
 import retrofit2.http.POST;
-import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -63,7 +56,8 @@ public interface IApi {
 
     /*获取版本信息*/
     @GET("/app/update/index")
-    Observable<BaseResponse<UpdateMsgBean>> getVersion(@Query("token") String token,@Query("versionNu") String versionCode);
+    Observable<BaseResponse<UpdateMsgBean>> getVersion(@Query("token") String token,@Query("versionNu") String versionCode
+            ,@Query("type")String type);
 
     /*根据imei登录设备获取token*/
     @POST("/app/device/login")

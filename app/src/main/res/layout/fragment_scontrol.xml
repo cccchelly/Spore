@@ -108,7 +108,7 @@
 
         </LinearLayout>
 
-        <!--虫仓漏虫  清虫位置-->
+        <!--虫仓漏虫-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -125,6 +125,82 @@
                 android:textColor="@color/text_222222"
                 android:text="虫仓漏虫"
                 />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="19dp"
+            android:layout_marginBottom="30dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_marginLeft="37dp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/scontrol_tv_chongcang_1kai"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textColor="@color/text_444444"
+                    android:gravity="center"
+                    android:text="虫仓1开"
+                    android:drawableTop="@mipmap/dbkz_k"
+                    />
+
+                <TextView
+                    android:id="@+id/scontrol_tv_chongcang_1guan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="32dp"
+                    android:textSize="20sp"
+                    android:textColor="@color/text_444444"
+                    android:gravity="center"
+                    android:text="虫仓1关"
+                    android:drawableTop="@mipmap/dbkz_g"
+                    />
+
+                <TextView
+                    android:id="@+id/scontrol_tv_chongcang_2kai"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="32dp"
+                    android:textSize="20sp"
+                    android:textColor="@color/text_444444"
+                    android:gravity="center"
+                    android:text="虫仓2开"
+                    android:drawableTop="@mipmap/dbkz_k"
+                    />
+
+                <TextView
+                    android:id="@+id/scontrol_tv_chongcang_2guan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="32dp"
+                    android:textSize="20sp"
+                    android:textColor="@color/text_444444"
+                    android:gravity="center"
+                    android:text="虫仓2关"
+                    android:drawableTop="@mipmap/dbkz_g"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <!--清虫位置-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="37dp"
+            android:layout_marginRight="37dp"
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal"
+            >
             <TextView
                 android:layout_width="0dp"
                 android:layout_weight="1"
@@ -149,36 +225,6 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@+id/scontrol_tv_chongcang_kai"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="20sp"
-                    android:textColor="@color/text_444444"
-                    android:gravity="center"
-                    android:text="开"
-                    android:drawableTop="@mipmap/dbkz_k"
-                    />
-
-                <TextView
-                    android:id="@+id/scontrol_tv_chongcang_guan"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="32dp"
-                    android:textSize="20sp"
-                    android:textColor="@color/text_444444"
-                    android:gravity="center"
-                    android:text="关"
-                    android:drawableTop="@mipmap/dbkz_g"
-                    />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_marginRight="37dp"
-                android:layout_height="wrap_content">
-
-                <TextView
                     android:id="@+id/scontrol_tv_fuweiqingchong"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -193,7 +239,7 @@
                     android:id="@+id/scontrol_tv_zhengzaiqingchong"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="89dp"
+                    android:layout_marginLeft="32dp"
                     android:textSize="20sp"
                     android:textColor="@color/text_444444"
                     android:gravity="center"
@@ -507,13 +553,13 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@+id/scontrol_tv_huancang"
+                    android:id="@+id/scontrol_tv_jishuxzc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="20sp"
                     android:textColor="@color/text_444444"
                     android:gravity="center"
-                    android:text="换仓"
+                    android:text="计数"
                     android:drawableTop="@mipmap/dbkz_hc"
                     />
 

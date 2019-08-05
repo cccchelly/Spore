@@ -10,8 +10,8 @@ import android.util.Log;
 
 import com.alex.witAg.App;
 import com.alex.witAg.AppContants;
-import com.alex.witAg.camreaproxy.CameraManager;
-import com.alex.witAg.utils.LocalPicCleanUtil;
+import com.alex.witAg.taskqueue.SeralTask;
+import com.alex.witAg.taskqueue.TaskQueue;
 import com.alex.witAg.utils.TaskTimeUtil;
 import com.alex.witAg.utils.ToastUtils;
 
@@ -61,7 +61,7 @@ public class CaptureService extends Service {
                         if (!App.getIsTaskRun()) {
                             if (TaskTimeUtil.getInstance().isHaveTimePoint(nowTime)) {
                                 Log.i("--capture--", "存在该时间，开始任务");
-                                startCaptureOnly();
+                                startPhotoTask();
                                 Thread.sleep(60*1000);
                             } else {
                                 Log.i("--capture--", "不存在该时间");
@@ -80,34 +80,9 @@ public class CaptureService extends Service {
 
     }
 
-    //简易版直接到时间只拍照
-    public void startCaptureOnly(){
-        if (App.getIsTaskRun()){
-            return;
-        }
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                App.setIsTaskRun(true);
-                //执行任务前检查内存，如果有必要则清理内存
-                LocalPicCleanUtil.doCleanIfNecessary();
-                Log.i(TAG, App.getIsTaskRun() + " ----startCaptureTask");
-                toastOnMain("定时任务开始执行");
-
-                CameraManager cameraManager = CameraManager.getInstance();
-                cameraManager.initCamera();
-                cameraManager.connectCamera();
-                cameraManager.isCameraConnect();
-                cameraManager.captureExecute(AppContants.CaptureFrom.FROM_TASK);
-
-                toastOnMain("拍照完成");
-                App.setIsTaskRun(false);
-
-
-            }
-        }).start();
-
+    private void startPhotoTask(){
+        toastOnMain("发送请求准备执行拍照流程");
+        TaskQueue.getInstance().add(new SeralTask(AppContants.commands.kaishipaizhao));
     }
 
 

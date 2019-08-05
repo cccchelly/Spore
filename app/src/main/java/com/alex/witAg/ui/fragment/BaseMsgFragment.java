@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.alex.witAg.App;
 import com.alex.witAg.AppContants;
 import com.alex.witAg.R;
 import com.alex.witAg.base.BaseFragment;
@@ -17,6 +18,8 @@ import com.alex.witAg.presenter.BaseMsgPresenter;
 import com.alex.witAg.presenter.viewImpl.IBaseMsgView;
 import com.alex.witAg.taskqueue.SeralTask;
 import com.alex.witAg.taskqueue.TaskQueue;
+import com.alex.witAg.utils.AppMsgUtil;
+import com.alex.witAg.utils.AppUpdateUtil;
 import com.alex.witAg.utils.ShareUtil;
 import com.alex.witAg.utils.TimeUtils;
 
@@ -48,6 +51,10 @@ public class BaseMsgFragment extends BaseFragment<BaseMsgPresenter, IBaseMsgView
     @BindView(R.id.base_msg_tv_error)
     TextView mTvError;
     Unbinder unbinder;
+    @BindView(R.id.base_msg_tv_version)
+    TextView mTvVersion;
+    @BindView(R.id.base_msg_tv_update)
+    TextView mTvUpdate;
 
     @Override
     protected void fetchData() {
@@ -65,16 +72,18 @@ public class BaseMsgFragment extends BaseFragment<BaseMsgPresenter, IBaseMsgView
     }
 
     private void setStatues() {
+        mTvVersion.setText("当前版本："+ AppMsgUtil.getVerName(getActivity()));
+
         mTvBatPower.setText(ShareUtil.getDeviceBatvol());
         mTvSunPower.setText(ShareUtil.getDeviceSunvol());
-        mTvError.setText(ShareUtil.getDeviceError());
-        if (TextUtils.equals(ShareUtil.getMsta(),"1")){
+        mTvError.setText("当前错误码：" + ShareUtil.getDeviceError());
+        if (TextUtils.equals(ShareUtil.getMsta(), "1")) {
             mTvRain.setText("有雨水");
-        }else if (TextUtils.equals(ShareUtil.getMsta(),"0")){
+        } else if (TextUtils.equals(ShareUtil.getMsta(), "0")) {
             mTvRain.setText("无雨水");
         }
-        mTvTemp.setText(ShareUtil.getTemp()+"℃");
-        mTvHum.setText(ShareUtil.getHum()+"RH");
+        mTvTemp.setText(ShareUtil.getTemp() + "℃");
+        mTvHum.setText(ShareUtil.getHum() + "RH");
     }
 
     @Override
@@ -105,15 +114,6 @@ public class BaseMsgFragment extends BaseFragment<BaseMsgPresenter, IBaseMsgView
         unbinder.unbind();
     }
 
-    @OnClick(R.id.base_msg_tv_refresh)
-    public void onViewClicked(View view) {
-        switch (view.getId()){
-            case R.id.base_msg_tv_refresh:
-                refreshData();
-                break;
-        }
-    }
-
     @Override
     public void onResume() {
         super.onResume();
@@ -121,10 +121,24 @@ public class BaseMsgFragment extends BaseFragment<BaseMsgPresenter, IBaseMsgView
     }
 
     //刷新数据
-    public void refreshData(){
+    public void refreshData() {
         mTvTime.setText(TimeUtils.millis2String(System.currentTimeMillis()));
         TaskQueue.getInstance().add(new SeralTask(AppContants.commands.qingqiuxinxi));
         setStatues();
     }
 
+    @OnClick({R.id.base_msg_tv_version, R.id.base_msg_tv_update,R.id.base_msg_tv_refresh})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.base_msg_tv_refresh:
+                refreshData();
+                break;
+            case R.id.base_msg_tv_version:
+                mTvVersion.setText("当前版本："+ AppMsgUtil.getVerName(getActivity()));
+                break;
+            case R.id.base_msg_tv_update:
+                AppUpdateUtil.check(true, true, false, true, true, 998, App.getAppContext(),true);    //检查新版本
+                break;
+        }
+    }
 }

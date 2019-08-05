@@ -1,31 +1,13 @@
 package com.alex.witAg.utils;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.Environment;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.SurfaceView;
 
 import com.alex.witAg.App;
 import com.alex.witAg.adapter.DeviceAdapter;
-import com.alex.witAg.bean.PicPathsBean;
 import com.alex.witAg.taskqueue.SeralTask;
 import com.alex.witAg.taskqueue.TaskQueue;
-import com.alex.witAg.ui.test.PlaySurfaceView;
-import com.alex.witAg.ui.test.jna.HCNetSDKByJNA;
-import com.alex.witAg.ui.test.jna.HCNetSDKJNAInstance;
-import com.hikvision.netsdk.ExceptionCallBack;
-import com.hikvision.netsdk.HCNetSDK;
-import com.hikvision.netsdk.INT_PTR;
-import com.hikvision.netsdk.NET_DVR_DEVICEINFO_V30;
-import com.hikvision.netsdk.NET_DVR_JPEGPARA;
-import com.hikvision.netsdk.NET_DVR_PREVIEWINFO;
-import com.hikvision.netsdk.NET_DVR_VIDEOEFFECT;
-import com.hikvision.netsdk.RealDataCallBack;
-import com.hikvision.netsdk.RealPlayCallBack;
-import com.hikvision.netsdk.StdDataCallBack;
 import com.kongqw.serialportlibrary.Device;
 import com.kongqw.serialportlibrary.SerialPortFinder;
 import com.kongqw.serialportlibrary.SerialPortManager;
@@ -36,15 +18,8 @@ import com.orhanobut.logger.Logger;
 import org.litepal.util.LogUtil;
 
 import java.io.File;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-
-import io.reactivex.Observable;
-import io.reactivex.Observer;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Function;
 
 
 /**
@@ -65,11 +40,14 @@ public class CaptureTaskUtil implements
 
 
     private static CaptureTaskUtil captureTaskUtil = null;
-    private CaptureTaskUtil(){}
-    public static CaptureTaskUtil instance(){
-        if (captureTaskUtil==null){
+
+    private CaptureTaskUtil() {
+    }
+
+    public static CaptureTaskUtil instance() {
+        if (captureTaskUtil == null) {
             synchronized (CaptureTaskUtil.class) {
-                if (captureTaskUtil==null) {
+                if (captureTaskUtil == null) {
                     captureTaskUtil = new CaptureTaskUtil();
                 }
             }
@@ -77,7 +55,8 @@ public class CaptureTaskUtil implements
         return captureTaskUtil;
 
     }
-    public void initDevice(Context context){
+
+    public void initDevice(Context context) {
         SerialPortFinder serialPortFinder = new SerialPortFinder();
         mDevices = serialPortFinder.getDevices();
         if (mDevices == null || mDevices.size() == 0) return;
@@ -93,11 +72,11 @@ public class CaptureTaskUtil implements
         int index = ShareUtil.getSeraIndex();
         if (index == -1) { //默认未设置是打开倒数第二个串口
             device = mDeviceAdapter.getItem(mDeviceAdapter.getCount() - 2);
-        }else {
+        } else {
             device = mDeviceAdapter.getItem(index);
         }
 
-        com.alex.witAg.utils.LogUtil.i("串口:"+device.getName());
+        com.alex.witAg.utils.LogUtil.i("串口:" + device.getName());
 
         //Device mDevice = mDeviceAdapter.getItem(6);
         openDevice(device);
@@ -106,7 +85,9 @@ public class CaptureTaskUtil implements
 
 
 
-  /*  *//**
+    /*  */
+
+    /**
      * @fn initeSdk
      *//*
     private boolean initeSdk() {
@@ -119,8 +100,6 @@ public class CaptureTaskUtil implements
                 true);
         return true;
     }*/
-
-
     public boolean openDevice(Device device) {
         // 打开串口
         boolean openSerialPort = mSerialPortManager.setOnOpenSerialPortListener((OnOpenSerialPortListener) this)
@@ -140,7 +119,7 @@ public class CaptureTaskUtil implements
                         Log.i(TAG, "onDataSent [ byte[] ]: " + Arrays.toString(bytes));
                         Log.i(TAG, "onDataSent [ String ]: " + new String(bytes));
                         final byte[] finalBytes = bytes;
-                        Log.i(TAG,String.format("发送\n%s", new String(finalBytes)));
+                        Log.i(TAG, String.format("发送\n%s", new String(finalBytes)));
                     }
                 })
                 .openSerialPort(device.getFile(), 9600);
@@ -148,122 +127,42 @@ public class CaptureTaskUtil implements
         Log.i(TAG, "onCreate: openSerialPort = " + openSerialPort);
         return openSerialPort;
     }
-    /*处理电机和摄像机返回参数*/
+
+    /*处理指令反馈和设备信息返回参数*/
     private void handleCallbackMsg(String str) {
-
-        if (str.startsWith("[")&&str.endsWith("]")){
+        if (str.contains("cmd:1")) {
             saveDeviceMsg(str);
-        }else if (str.startsWith("[")&&!str.endsWith("]")){
-            newDeviceStrBuilder.append(str);
-        }else if (!str.startsWith("[")&&str.endsWith("]")){
-            newDeviceStrBuilder.append(str);
-        }
+        } else if (str.contains("cmd:2")) {
+            saveCommandMsg(str);
+        } else if (str.contains("cmd:3")) {
 
-        if (str.startsWith("{")&&str.endsWith("}")){ //{xxxxxxx}
-            saveMessage(str);
-        }else if (str.startsWith("<")&&str.endsWith(">")){ //<yyyyyy>
-            saveCaptureMsg(str);
-        }else if (str.startsWith("{")&&str.endsWith(">")){  //{xxxxx}<yyyyyyyy>
-            String strDevice = str.substring(0,str.indexOf("}")+1);
-            String strCap = str.substring(str.indexOf("<"),str.length());
-            saveMessage(strDevice);
-            saveCaptureMsg(strCap);
-        }else if (str.startsWith("{")&&!str.contains("}")) { //{xxxxx
-            if (deviceStrBuilder.length()==0) {
-                deviceStrBuilder.append(str);
-            }else if(deviceStrBuilder.toString().endsWith("}")){
-                String secend = new String(deviceStrBuilder.toString());
-                deviceStrBuilder.delete(0,deviceStrBuilder.length());
-                deviceStrBuilder.append(str);
-                deviceStrBuilder.append(secend);
-            }
-        }else if (str.startsWith("{")&&str.endsWith("<")){ // {xxxxx}<
-            saveMessage(str.substring(0,str.indexOf("}")+1));
-            captureStrBuilder.append("<");
-        }else if (str.startsWith("{")&&str.contains("}<")){ // {xxxxx}<yyy
-            saveMessage(str.substring(0,str.indexOf("}")+1));
-            captureStrBuilder.append(str.substring(str.indexOf("<"),str.length()));
-        }else if (str.endsWith(">")&&!str.contains("<")){ //   yyyy>
-            captureStrBuilder.append(str);
-        }else if (str.endsWith(">")&&str.startsWith("}<")){  //    }<yyyy>
-            saveCaptureMsg(str.substring(str.indexOf("<"),str.length()));
-            deviceStrBuilder.append("}");
-        }else if (str.endsWith(">")&&str.contains("}<")){  //  xxxx}<yyyy>
-            saveCaptureMsg(str.substring(str.indexOf("<"),str.length()));
-            Log.i("====",str.indexOf("}")+"");
-            deviceStrBuilder.append(str.substring(0,str.indexOf("}")+1));
-        }else if (str.endsWith("}")&&!str.startsWith("{")){    //  xxx}
-            deviceStrBuilder.append(str);
-        }
-        Log.i("==captureStrBuilder==",captureStrBuilder.toString());
-        Log.i("==deviceStrBuilder==",deviceStrBuilder.toString());
-        //Log.i(TAG, "相机返回状态参数"+ captureStrBuilder.toString());
-        if (captureStrBuilder.toString().startsWith("<")&& captureStrBuilder.toString().endsWith(">")){
-            saveCaptureMsg(captureStrBuilder.toString());
-            captureStrBuilder.delete(0, captureStrBuilder.length());
-        }
-        //Log.i(TAG, "平板返回状态参数"+ deviceStrBuilder.toString());
-        if (deviceStrBuilder.toString().startsWith("{")&& deviceStrBuilder.toString().endsWith("}")) {
-            saveMessage(deviceStrBuilder.toString());
-            deviceStrBuilder.delete(0, deviceStrBuilder.length());
-        }
-        //Log.i(TAG,"sta="+ShareUtil.getDeviceStatue()+",err="+ ShareUtil.getDeviceError());
-        if (newDeviceStrBuilder.toString().startsWith("[")&&newDeviceStrBuilder.toString().endsWith("]")){
-            saveDeviceMsg(newDeviceStrBuilder.toString());
-            newDeviceStrBuilder.delete(0,newDeviceStrBuilder.length());
         }
     }
 
-    //保存相机参数
-    private void saveCaptureMsg(String string) {
-        PostTaskMsgUtil.instance().postMsg(2,string);
+    //保存命令返回参数
+    private void saveCommandMsg(String string) {
+        PostTaskMsgUtil.instance().postMsg(2, string);
 
-        captureStrBuilder.delete(0, captureStrBuilder.length());
-        Log.i("==相机：==",string);
+        Log.i("==相机：==", string);
         /*CAMsta:x (摄像头电源控制)       x=0----摄像机电源关闭           x=1----摄像机电源开起
           HIGHsta:x （绿板高度状态）    x=1---5（5个状态高度）
           error:x     x=0----舱门电机和高度调节电机无故障        x=1----舱门电机有故障     x=2----高度调节电机有故障 */
-        String camSta = CaptureInfoStrUtil.getInstance().getCapValue(string,1);
-        String highSta = CaptureInfoStrUtil.getInstance().getCapValue(string,2);
-        String error = CaptureInfoStrUtil.getInstance().getCapValue(string,3);
+        String camSta = CommandBackStrUtil.getInstance().getCapValue(string, 1);
+        String highSta = CommandBackStrUtil.getInstance().getCapValue(string, 2);
+        String error = CommandBackStrUtil.getInstance().getCapValue(string, 3);
         ShareUtil.saveCaptureCamSta(camSta);
         ShareUtil.saveCaptureHignSta(highSta);
         ShareUtil.saveCaptureErrorSta(error);
     }
-    /*保存电机参数*/
-    private void saveMessage(String finalString) {
-        PostTaskMsgUtil.instance().postMsg(2,finalString);
 
-        deviceStrBuilder.delete(0, deviceStrBuilder.length());
-        Log.i("==电机：==",finalString);
-        //{batvol:12.5v,sunvol:13.5v,sta:x,error:x}   batvol:12.5v----电池电压12.5v  sunvol:13.5v----太阳能电压13.5v  sta:x-----x=0电机复位状态(诱捕状态)
-        //  sta:x-----x=1粘虫绿板正面     sta:x-----x=2粘虫绿板反面   error:x----x=0 电机非故障状态  error:x----x=1 电机故障状态
-        String batvol = SerialInforStrUtil.getValue(finalString,1);
-        String sunvol = SerialInforStrUtil.getValue(finalString,2);
-        String sta = SerialInforStrUtil.getValue(finalString,3);
-        String error = SerialInforStrUtil.getValue(finalString,4);
-        ShareUtil.saveDeviceStatue(sta);
-        ShareUtil.saveDeviceError(error);
-        ShareUtil.saveDeviceBatvol(batvol);
-        ShareUtil.saveDeviceSunvol(sunvol);
-        if (TextUtils.equals(error,"1")){ //电机超过4分钟未转到相应位置报错
-            
-        }
-        /*SerialBackMessage message = new SerialBackMessage();
-        message.setBatvol(batvol);
-        message.setSunvol(sunvol);
-        message.setSta(sta);
-        message.setError(error);
-        EventBus.getDefault().post(message);*/
-    }
     /*保存查询到的设备参数*/
-    private void saveDeviceMsg(String str){
-        LogUtil.d("==设备参数==",str);
-        String volBat = DeviceInfoStrUtil.getValue(str,1);
-        String volSun = DeviceInfoStrUtil.getValue(str,2);
-        String msta = DeviceInfoStrUtil.getValue(str,3);
-        String temp = DeviceInfoStrUtil.getValue(str,4);
-        String hum = DeviceInfoStrUtil.getValue(str,5);
+    private void saveDeviceMsg(String str) {
+        LogUtil.d("==设备参数==", str);
+        String volBat = DeviceInfoStrUtil.getValue(str, 1);
+        String volSun = DeviceInfoStrUtil.getValue(str, 2);
+        String msta = DeviceInfoStrUtil.getValue(str, 3);
+        String temp = DeviceInfoStrUtil.getValue(str, 4);
+        String hum = DeviceInfoStrUtil.getValue(str, 5);
 
         ShareUtil.saveDeviceBatvol(volBat);
         ShareUtil.saveDeviceSunvol(volSun);
@@ -277,9 +176,9 @@ public class CaptureTaskUtil implements
      * 发送数据
      */
     public boolean send(String data) {
-        Log.i(TAG,"发送给串口-->"+data);
-        if (!isDeviceOpenFlag){
-            Log.i(TAG,"请先打开串口");
+        Log.i(TAG, "发送给串口-->" + data);
+        if (!isDeviceOpenFlag) {
+            Log.i(TAG, "请先打开串口");
             return false;
         }
         if (null == data) {
@@ -293,10 +192,10 @@ public class CaptureTaskUtil implements
         return sendSure(data);
     }
 
-    private boolean sendSure(String data){
-        if (TextUtils.equals(ShareUtil.getDeviceError(),"1")){
+    private boolean sendSure(String data) {
+        if (TextUtils.equals(ShareUtil.getDeviceError(), "1")) {
             return false;
-        }else {
+        } else {
             byte[] sendContentBytes = data.getBytes();
             boolean sendBytes = mSerialPortManager.sendBytes(sendContentBytes);
             Log.i(TAG, "onSend: sendBytes = " + sendBytes);
@@ -383,8 +282,11 @@ public class CaptureTaskUtil implements
 
     }
 
-    *//**
+    */
+
+    /**
      * 截图
+     *
      * @param
      * @param
      *//*
@@ -431,10 +333,7 @@ public class CaptureTaskUtil implements
             Log.i(TAG, "NET_DVR_CaptureJPEGPicture_NEW size!" + bytesRerned.iValue);
         }
     }*/
-
-
-
-    public void destoryDevice(){
+    public void destoryDevice() {
         if (mSerialPortManager != null) {
             mSerialPortManager.closeSerialPort();
             mSerialPortManager = null;
@@ -443,7 +342,7 @@ public class CaptureTaskUtil implements
 
     @Override
     public void onSuccess(File device) {
-        Log.i(TAG,String.format("串口 [%s] 打开成功", device.getPath()));
+        Log.i(TAG, String.format("串口 [%s] 打开成功", device.getPath()));
         isDeviceOpenFlag = true;
     }
 
@@ -452,11 +351,11 @@ public class CaptureTaskUtil implements
         isDeviceOpenFlag = false;
         switch (status) {
             case NO_READ_WRITE_PERMISSION:
-                Log.i(TAG,device.getPath() + "--- 没有读写权限");
+                Log.i(TAG, device.getPath() + "--- 没有读写权限");
                 break;
             case OPEN_FAIL:
             default:
-                Log.i(TAG,device.getPath() + "--- 串口打开失败");
+                Log.i(TAG, device.getPath() + "--- 串口打开失败");
                 break;
         }
     }
@@ -542,23 +441,23 @@ public class CaptureTaskUtil implements
 
 
     //发送命令打开相机
-    public boolean openCaptureTurnPositive(){
+    public boolean openCaptureTurnPositive() {
         sendSure(SerialInforStrUtil.openCamTurnPositive());   //开启摄像头并翻转到正面
         return true;
     }
 
     //调节高度，必须在复位状态，若不在先强制复位
-    public void setHighAfterReset(TaskQueue taskQueue, String highString){
+    public void setHighAfterReset(TaskQueue taskQueue, String highString) {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                if (!TextUtils.equals(ShareUtil.getDeviceStatue(),SerialInforStrUtil.STA_CLOSE_RESET)) { //如果不在复位状态
+                if (!TextUtils.equals(ShareUtil.getDeviceStatue(), SerialInforStrUtil.STA_CLOSE_RESET)) { //如果不在复位状态
                     taskQueue.add(new SeralTask(SerialInforStrUtil.getForceRestartStr())); //强制复位
                 }
-                for (int i = 0;i<5*60;i++){  //持续查询是否完成复位
-                    if (TextUtils.equals(ShareUtil.getDeviceStatue(),SerialInforStrUtil.STA_CLOSE_RESET)){
+                for (int i = 0; i < 5 * 60; i++) {  //持续查询是否完成复位
+                    if (TextUtils.equals(ShareUtil.getDeviceStatue(), SerialInforStrUtil.STA_CLOSE_RESET)) {
                         break;
-                    }else {
+                    } else {
                         try {
                             Thread.sleep(2000);
                         } catch (InterruptedException e) {

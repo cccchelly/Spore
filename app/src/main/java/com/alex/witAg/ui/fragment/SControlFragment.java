@@ -34,9 +34,9 @@ public class SControlFragment extends BaseFragment<SControlPresenter, ISControlV
     TextView mTvJiareKai;
     @BindView(R.id.scontrol_tv_jiare_guan)
     TextView mTvJiareGuan;
-    @BindView(R.id.scontrol_tv_chongcang_kai)
+    @BindView(R.id.scontrol_tv_chongcang_2kai)
     TextView mTvChongcangKai;
-    @BindView(R.id.scontrol_tv_chongcang_guan)
+    @BindView(R.id.scontrol_tv_chongcang_2guan)
     TextView mTvChongcangGuan;
     @BindView(R.id.scontrol_tv_fuweiqingchong)
     TextView mTvFuweiqingchong;
@@ -62,7 +62,7 @@ public class SControlFragment extends BaseFragment<SControlPresenter, ISControlV
     TextView mTvShebeiTing;
     @BindView(R.id.scontrol_tv_shebei_huifu)
     TextView mTvShebeiHuifu;
-    @BindView(R.id.scontrol_tv_huancang)
+    @BindView(R.id.scontrol_tv_jishuxzc)
     TextView mTvHuancang;
     @BindView(R.id.scontrol_tv_fuweixzc)
     TextView mTvFuweixzc;
@@ -115,7 +115,14 @@ public class SControlFragment extends BaseFragment<SControlPresenter, ISControlV
         unbinder.unbind();
     }
 
-    @OnClick({R.id.scontrol_tv_yucang_kai, R.id.scontrol_tv_yucang_guan, R.id.scontrol_tv_jiare_kai, R.id.scontrol_tv_jiare_guan, R.id.scontrol_tv_chongcang_kai, R.id.scontrol_tv_chongcang_guan, R.id.scontrol_tv_fuweiqingchong, R.id.scontrol_tv_zhengzaiqingchong, R.id.scontrol_tv_csd_jiechong, R.id.scontrol_tv_csd_paizhao, R.id.scontrol_tv_csd_qingli, R.id.scontrol_tv_buguangdeng_kai, R.id.scontrol_tv_buguangdeng_guan, R.id.scontrol_tv_dengguan_kai, R.id.scontrol_tv_dengguan_guan, R.id.scontrol_tv_fuweizhengji, R.id.scontrol_tv_shebei_ting, R.id.scontrol_tv_shebei_huifu, R.id.scontrol_tv_huancang, R.id.scontrol_tv_fuweixzc, R.id.scontrol_tv_qingqiuxinxi})
+    @OnClick({R.id.scontrol_tv_yucang_kai, R.id.scontrol_tv_yucang_guan, R.id.scontrol_tv_jiare_kai, R.id.scontrol_tv_jiare_guan,
+            R.id.scontrol_tv_chongcang_2kai, R.id.scontrol_tv_chongcang_2guan,
+            R.id.scontrol_tv_chongcang_1kai, R.id.scontrol_tv_chongcang_1guan,
+            R.id.scontrol_tv_fuweiqingchong, R.id.scontrol_tv_zhengzaiqingchong,
+            R.id.scontrol_tv_csd_jiechong, R.id.scontrol_tv_csd_paizhao, R.id.scontrol_tv_csd_qingli,
+            R.id.scontrol_tv_buguangdeng_kai, R.id.scontrol_tv_buguangdeng_guan, R.id.scontrol_tv_dengguan_kai,
+            R.id.scontrol_tv_dengguan_guan, R.id.scontrol_tv_fuweizhengji, R.id.scontrol_tv_shebei_ting,
+            R.id.scontrol_tv_shebei_huifu, R.id.scontrol_tv_jishuxzc, R.id.scontrol_tv_fuweixzc, R.id.scontrol_tv_qingqiuxinxi})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.scontrol_tv_yucang_kai:
@@ -130,11 +137,17 @@ public class SControlFragment extends BaseFragment<SControlPresenter, ISControlV
             case R.id.scontrol_tv_jiare_guan:
                 taskQueue.add(new SeralTask(AppContants.commands.jiareguan));
                 break;
-            case R.id.scontrol_tv_chongcang_kai:
-                taskQueue.add(new SeralTask(AppContants.commands.chongcangkai));
+            case R.id.scontrol_tv_chongcang_2kai:
+                taskQueue.add(new SeralTask(AppContants.commands.chongcang2kai));
                 break;
-            case R.id.scontrol_tv_chongcang_guan:
-                taskQueue.add(new SeralTask(AppContants.commands.chongcangguan));
+            case R.id.scontrol_tv_chongcang_2guan:
+                taskQueue.add(new SeralTask(AppContants.commands.chongcang2guan));
+                break;
+            case R.id.scontrol_tv_chongcang_1kai:
+                taskQueue.add(new SeralTask(AppContants.commands.chongcang1kai));
+                break;
+            case R.id.scontrol_tv_chongcang_1guan:
+                taskQueue.add(new SeralTask(AppContants.commands.chongcang1guan));
                 break;
             case R.id.scontrol_tv_fuweiqingchong:
                 taskQueue.add(new SeralTask(AppContants.commands.fuweiqingchong));
@@ -172,8 +185,8 @@ public class SControlFragment extends BaseFragment<SControlPresenter, ISControlV
             case R.id.scontrol_tv_shebei_huifu:
                 taskQueue.add(new SeralTask(AppContants.commands.shebei_huifu));
                 break;
-            case R.id.scontrol_tv_huancang:
-                taskQueue.add(new SeralTask(AppContants.commands.huancang));
+            case R.id.scontrol_tv_jishuxzc:
+                taskQueue.add(new SeralTask(AppContants.commands.jishuxzc));
                 break;
             case R.id.scontrol_tv_fuweixzc:
                 taskQueue.add(new SeralTask(AppContants.commands.fuweixzc));

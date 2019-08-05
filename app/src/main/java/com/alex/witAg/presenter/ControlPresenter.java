@@ -1,7 +1,6 @@
 package com.alex.witAg.presenter;
 
 import android.app.Activity;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.text.TextUtils;
@@ -13,17 +12,13 @@ import android.view.View;
 import android.widget.FrameLayout;
 
 import com.alex.witAg.App;
-import com.alex.witAg.AppContants;
 import com.alex.witAg.adapter.DeviceAdapter;
 import com.alex.witAg.base.BasePresenter;
-import com.alex.witAg.bean.PicMessageBean;
 import com.alex.witAg.bean.PicPathsBean;
-import com.alex.witAg.bean.QiNiuTokenBean;
-import com.alex.witAg.http.AppDataManager;
 import com.alex.witAg.presenter.viewImpl.IControlView;
 import com.alex.witAg.ui.fragment.ControlFragment;
 import com.alex.witAg.ui.test.PlaySurfaceView;
-import com.alex.witAg.utils.CaptureInfoStrUtil;
+import com.alex.witAg.utils.CommandBackStrUtil;
 import com.alex.witAg.utils.CapturePostUtil;
 import com.alex.witAg.utils.FileUtils;
 import com.alex.witAg.utils.SerialInforStrUtil;
@@ -31,7 +26,6 @@ import com.alex.witAg.utils.ShareUtil;
 import com.alex.witAg.utils.TextChangeUtil;
 import com.alex.witAg.utils.TimeUtils;
 import com.alex.witAg.utils.ToastUtils;
-import com.alex.witAg.utils.eventbus.SerialBackMessage;
 import com.hikvision.netsdk.ExceptionCallBack;
 import com.hikvision.netsdk.HCNetSDK;
 import com.hikvision.netsdk.INT_PTR;
@@ -44,32 +38,11 @@ import com.kongqw.serialportlibrary.SerialPortFinder;
 import com.kongqw.serialportlibrary.SerialPortManager;
 import com.kongqw.serialportlibrary.listener.OnOpenSerialPortListener;
 import com.kongqw.serialportlibrary.listener.OnSerialPortDataListener;
-import com.orhanobut.logger.Logger;
-import com.qiniu.android.common.FixedZone;
-import com.qiniu.android.http.ResponseInfo;
-import com.qiniu.android.storage.Configuration;
-import com.qiniu.android.storage.UpCompletionHandler;
-import com.qiniu.android.storage.UpProgressHandler;
-import com.qiniu.android.storage.UploadManager;
-import com.qiniu.android.storage.UploadOptions;
-
-import org.greenrobot.eventbus.EventBus;
-import org.json.JSONObject;
-import org.litepal.tablemanager.Connector;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-
-import io.reactivex.Observable;
-import io.reactivex.Observer;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
-import io.reactivex.functions.Function;
-import io.reactivex.schedulers.Schedulers;
-import okhttp3.ResponseBody;
 
 /**
  * Created by dth
@@ -226,9 +199,9 @@ public class ControlPresenter extends BasePresenter<IControlView> implements
         /*CAMsta:x (摄像头电源控制)       x=0----摄像机电源关闭           x=1----摄像机电源开起
           HIGHsta:x （绿板高度状态）    x=1---5（5个状态高度）
           error:x     x=0----舱门电机和高度调节电机无故障        x=1----舱门电机有故障     x=2----高度调节电机有故障 */
-        String camSta = CaptureInfoStrUtil.getInstance().getCapValue(string,1);
-        String highSta = CaptureInfoStrUtil.getInstance().getCapValue(string,2);
-        String error = CaptureInfoStrUtil.getInstance().getCapValue(string,3);
+        String camSta = CommandBackStrUtil.getInstance().getCapValue(string,1);
+        String highSta = CommandBackStrUtil.getInstance().getCapValue(string,2);
+        String error = CommandBackStrUtil.getInstance().getCapValue(string,3);
         ShareUtil.saveCaptureCamSta(camSta);
         ShareUtil.saveCaptureHignSta(highSta);
         ShareUtil.saveCaptureErrorSta(error);

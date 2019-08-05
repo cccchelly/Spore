@@ -99,7 +99,7 @@
                 android:textSize="20sp"
                 android:textColor="@color/text_444444"
                 android:text="数据上传"
-                android:drawableTop="@mipmap/pz_sjsc"
+                android:drawableTop="@mipmap/pz_pz"
                 />
 
         </LinearLayout>
