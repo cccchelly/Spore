@@ -76,10 +76,11 @@ public class BaseMsgFragment extends BaseFragment<BaseMsgPresenter, IBaseMsgView
 
         mTvBatPower.setText(ShareUtil.getDeviceBatvol());
         mTvSunPower.setText(ShareUtil.getDeviceSunvol());
-        mTvError.setText("当前错误码：" + ShareUtil.getDeviceError());
-        if (TextUtils.equals(ShareUtil.getMsta(), "1")) {
+        mTvError.setText("当前状态码："+ShareUtil.getDeviceStatue()+",错误码：" + ShareUtil.getDeviceError());
+        /*RAIN:0--雨控（1-有雨，0-无雨）*/
+        if (TextUtils.equals(ShareUtil.getRain(), "1")) {
             mTvRain.setText("有雨水");
-        } else if (TextUtils.equals(ShareUtil.getMsta(), "0")) {
+        } else if (TextUtils.equals(ShareUtil.getRain(), "0")) {
             mTvRain.setText("无雨水");
         }
         mTvTemp.setText(ShareUtil.getTemp() + "℃");

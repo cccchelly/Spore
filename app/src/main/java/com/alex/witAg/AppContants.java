@@ -141,7 +141,7 @@ public interface AppContants {
         //设备从紧急停止状态恢复正常工作
         String shebei_huifu = "STA:18,TL:000,MODE_T:0";
         //旋转仓计数
-        String jishuxzc = "STA:22,TL:000,MODE_T:0";
+        String xzchuancang = "STA:22,TL:000,MODE_T:0";
         //旋转仓复位
         String fuweixzc = "STA:23,TL:000,MODE_T:0";
         //请求本机信息
@@ -158,7 +158,7 @@ public interface AppContants {
         //时控 进入诱虫状态
         String shikongkai = "STA:21,TL:000,MODE_T:1";
         //时控 关闭诱虫状态
-        String shikongguan = "STA:21,TL:000,MODE_T:2";
+        String shikongguan = "STA:21,TL:000,MODE_T:0";
 
     }
 

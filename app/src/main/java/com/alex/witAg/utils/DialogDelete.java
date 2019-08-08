@@ -24,6 +24,7 @@ public class DialogDelete {
     public DialogDelete(Context context) {
         View view = LayoutInflater.from(context).inflate(R.layout.delete_dialog_layout,null);
         dialog = new AlertDialog.Builder(context,R.style.quick_option_dialog).create();
+        //dialog = new AlertDialog.Builder(context).create();
         dialog.show();
         Window window = dialog.getWindow();
         window.setContentView(view);
@@ -38,8 +39,8 @@ public class DialogDelete {
         window.clearFlags(WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
         dialog.dismiss();
 
-         tvCancle = (TextView) view.findViewById(R.id.delete_dialog_tv_sure);
-         tvSure = (TextView) view.findViewById(R.id.delete_dialog_tv_cancle);
+         tvCancle = (TextView) view.findViewById(R.id.delete_dialog_tv_cancle);
+         tvSure = (TextView) view.findViewById(R.id.delete_dialog_tv_sure);
 
          tvCancle.setOnClickListener(new View.OnClickListener() {
              @Override
@@ -51,8 +52,9 @@ public class DialogDelete {
              @Override
              public void onClick(View v) {
                  if (onSure != null){
-                     onSure.getInputContent();
+                     onSure.onSure();
                  }
+                 dialog.dismiss();
              }
          });
 
@@ -72,7 +74,7 @@ public class DialogDelete {
     }
 
     public interface OnSureListener {
-        void getInputContent();
+        void onSure();
     }
 
 

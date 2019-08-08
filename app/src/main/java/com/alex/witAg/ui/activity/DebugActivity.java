@@ -75,7 +75,7 @@ public class DebugActivity extends BaseActivity<DebugPresenter, IDebugView> impl
                 TaskQueue.getInstance().add(new SeralTask(DeviceInfoStrUtil.GET_DEVICE_MSG));
                 break;
             case R.id.debug_btn_refresh_device_msg:
-                mTvShowDeviceMsg.setText("VOLBAT="+ ShareUtil.getDeviceBatvol()+",VOLSUN="+ShareUtil.getDeviceSunvol()+",Msta="+ShareUtil.getMsta()+
+                mTvShowDeviceMsg.setText("VOLBAT="+ ShareUtil.getDeviceBatvol()+",VOLSUN="+ShareUtil.getDeviceSunvol()+",Msta="+ShareUtil.getRain()+
                         ",TEMP="+ShareUtil.getTemp()+",hum="+ShareUtil.getHum());
                 break;
         }

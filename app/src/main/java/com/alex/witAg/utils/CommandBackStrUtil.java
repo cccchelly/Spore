@@ -21,39 +21,44 @@ public class CommandBackStrUtil {
             return captureInfoStrUtil;
         }
     }
-
+    /*
+     硬件返回的数据前面可能有OK  需要判断如果有的话需要去掉
+    OK{cmd:2,d:{STA:11,ERR:00}}*/
     public  Map<String,String> getBackMapInfo(String info){  //将返回的信息串拆分为map形式
         Map<String,String> map = new HashMap();
-        if (TextUtils.isEmpty(info)||!info.startsWith("<")||!info.endsWith(">")){
+        if (TextUtils.isEmpty(info)){
             return map;
         }
-        String[] strings = info.substring(1, info.length() - 1).split(",");
-        for (String str:strings) {
-            String[] keyVal = str.split(":");
-            map.put(keyVal[0],keyVal[1]);
-        }
+        try {
+            String[] strings;
+            if (info.startsWith("OK")){
+                strings = info.substring(12, info.length() - 4).split(",");
+            }else {
+                strings = info.substring(10, info.length() - 4).split(",");
+            }
+
+            for (String str:strings) {
+                String[] keyVal = str.split(":");
+                map.put(keyVal[0],keyVal[1]);
+            }
+        }catch (Exception e){}
         return map;
     }
 
     /*
-    * flag    1 摄像头电源开启/关闭状态    2绿板高度状态    3错误
+    * flag    1 状态  2错误码
     **/
     public  String getCapValue(String backInfo,int flag ){  //返回值value
         String info = "";
         for (Map.Entry<String, String> entry :getBackMapInfo(backInfo) .entrySet()) {
             switch (flag){
                 case 1:
-                    if (TextUtils.equals(entry.getKey(),"CAMsta")){
+                    if (TextUtils.equals(entry.getKey(),"STA")){
                         info = entry.getValue();
                     }
                     break;
                 case 2:
-                    if (TextUtils.equals(entry.getKey(),"HIGHsta")){
-                        info = entry.getValue();
-                    }
-                    break;
-                case 3:
-                    if (TextUtils.equals(entry.getKey(),"error")){
+                    if (TextUtils.equals(entry.getKey(),"ERR")){
                         info = entry.getValue();
                     }
                     break;

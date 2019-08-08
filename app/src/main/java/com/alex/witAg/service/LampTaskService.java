@@ -82,12 +82,12 @@ public class LampTaskService extends Service {
 
     public void openLamp() {
         toastOnMain("发送开灯命令");
-        TaskQueue.getInstance().add(new SeralTask(AppContants.commands.dengguan_kai));
+        TaskQueue.getInstance().add(new SeralTask(AppContants.commands.shikongkai));
     }
 
     public void closeLamp() {
         toastOnMain("发送关灯命令");
-        TaskQueue.getInstance().add(new SeralTask(AppContants.commands.dengguan_guan));
+        TaskQueue.getInstance().add(new SeralTask(AppContants.commands.shikongguan));
     }
 
     @Override

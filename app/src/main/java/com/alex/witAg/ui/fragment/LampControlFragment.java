@@ -155,7 +155,7 @@ public class LampControlFragment extends BaseFragment<LampControlPresenter, ILam
                     DialogDelete dialogDelete =  new DialogDelete(getActivity());
                     dialogDelete.setOnSureListener(new DialogDelete.OnSureListener() {
                         @Override
-                        public void getInputContent() {
+                        public void onSure() {
                             LampTimeUtil.getInstance().deleteTime(item);
                             refreshRvData();
                         }

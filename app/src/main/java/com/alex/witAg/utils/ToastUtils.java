@@ -1,5 +1,6 @@
 package com.alex.witAg.utils;
 
+import android.os.Looper;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.widget.Toast;
@@ -22,6 +23,7 @@ public class ToastUtils {
 
 
     public static void showToast(String message) {
+
         if (TextUtils.equals(message, mPreMessage)) {
             if (System.currentTimeMillis() - mTime > DELAY_TIME) {
                 Toast.makeText(App.getAppContext(), message, Toast.LENGTH_SHORT).show();

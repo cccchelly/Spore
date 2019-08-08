@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="org.eclipse.paho:org.eclipse.paho.android.service:1.1.0@jar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse.paho/org.eclipse.paho.android.service/1.1.0/1945d9504415955d865ac805f60bf85366aeaffb/org.eclipse.paho.android.service-1.1.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

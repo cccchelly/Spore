@@ -295,7 +295,7 @@ public class PermissionsManager {
                             action.onDenied(permission);
                         }
                     }).create();
-            dialog.show();
+            //dialog.show();
         }
     }
 

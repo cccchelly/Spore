@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="org.litepal.android:core-1.6.1">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.android/build-cache/62226f02a7becf355cef44a4a03ddad651130079/output/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.android/build-cache/62226f02a7becf355cef44a4a03ddad651130079/output/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

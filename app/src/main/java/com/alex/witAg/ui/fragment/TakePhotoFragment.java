@@ -29,6 +29,7 @@ import com.alex.witAg.camreaproxy.KsjCamera;
 import com.alex.witAg.camreaproxy.OnCaptureListener;
 import com.alex.witAg.presenter.TakePhotoPresenter;
 import com.alex.witAg.presenter.viewImpl.ITakePhotoView;
+import com.alex.witAg.taskqueue.SeralTask;
 import com.alex.witAg.taskqueue.TaskQueue;
 import com.alex.witAg.utils.CapturePostUtil;
 import com.alex.witAg.utils.CaptureTaskUtil;
@@ -41,6 +42,7 @@ import com.alex.witAg.utils.TaskServiceUtil;
 import com.alex.witAg.utils.TaskTimeUtil;
 import com.alex.witAg.utils.TimeUtils;
 import com.alex.witAg.utils.ToastUtils;
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.bigkoo.pickerview.builder.TimePickerBuilder;
 import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.bigkoo.pickerview.view.TimePickerView;
@@ -275,9 +277,14 @@ public class TakePhotoFragment extends BaseFragment<TakePhotoPresenter, ITakePho
 
 
     @OnClick({R.id.set_capture_tv_choose_time, R.id.set_capture_tv_choose_end_time, R.id.set_capture_tv_sure, R.id.set_capture_tv_cancle,
-            R.id.takephoto_tv_post, R.id.takephoto_tv_capture})
+            R.id.takephoto_tv_post, R.id.control_tv_preview,R.id.takephoto_tv_capture,R.id.takephoto_tv_capture_other})
     public void onViewClicked(View view) {
         switch (view.getId()) {
+            case  R.id.control_tv_preview:
+                ARouter.getInstance()
+                        .build(AppContants.ARouterUrl.PreviewActivity)
+                        .navigation();
+                break;
             case R.id.takephoto_tv_post: //上传本地照片
                 new Thread(new Runnable() {
                     @Override
@@ -286,7 +293,10 @@ public class TakePhotoFragment extends BaseFragment<TakePhotoPresenter, ITakePho
                     }
                 }).start();
                 break;
-            case R.id.takephoto_tv_capture: //执行拍照
+            case R.id.takephoto_tv_capture_other: //请求硬件运行到相应位置并且拍照
+                taskQueue.add(new SeralTask(AppContants.commands.kaishipaizhao));
+                break;
+            case R.id.takephoto_tv_capture: //执行直接拍照
                 LocalPicCleanUtil.doCleanIfNecessary();
                 takePhoto();
                 break;
@@ -369,7 +379,7 @@ public class TakePhotoFragment extends BaseFragment<TakePhotoPresenter, ITakePho
                    DialogDelete dialogDelete =  new DialogDelete(getActivity());
                    dialogDelete.setOnSureListener(new DialogDelete.OnSureListener() {
                        @Override
-                       public void getInputContent() {
+                       public void onSure() {
                            TaskTimeUtil.getInstance().deleteTime(item);
                            refreshRvData();
                        }

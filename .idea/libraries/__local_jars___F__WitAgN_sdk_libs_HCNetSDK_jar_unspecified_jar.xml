@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="__local_jars__:F.\WitAgN\sdk\libs\HCNetSDK.jar:unspecified@jar">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/sdk/libs/HCNetSDK.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

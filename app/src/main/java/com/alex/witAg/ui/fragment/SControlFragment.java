@@ -62,7 +62,7 @@ public class SControlFragment extends BaseFragment<SControlPresenter, ISControlV
     TextView mTvShebeiTing;
     @BindView(R.id.scontrol_tv_shebei_huifu)
     TextView mTvShebeiHuifu;
-    @BindView(R.id.scontrol_tv_jishuxzc)
+    @BindView(R.id.scontrol_tv_xzchuancang)
     TextView mTvHuancang;
     @BindView(R.id.scontrol_tv_fuweixzc)
     TextView mTvFuweixzc;
@@ -122,7 +122,7 @@ public class SControlFragment extends BaseFragment<SControlPresenter, ISControlV
             R.id.scontrol_tv_csd_jiechong, R.id.scontrol_tv_csd_paizhao, R.id.scontrol_tv_csd_qingli,
             R.id.scontrol_tv_buguangdeng_kai, R.id.scontrol_tv_buguangdeng_guan, R.id.scontrol_tv_dengguan_kai,
             R.id.scontrol_tv_dengguan_guan, R.id.scontrol_tv_fuweizhengji, R.id.scontrol_tv_shebei_ting,
-            R.id.scontrol_tv_shebei_huifu, R.id.scontrol_tv_jishuxzc, R.id.scontrol_tv_fuweixzc, R.id.scontrol_tv_qingqiuxinxi})
+            R.id.scontrol_tv_shebei_huifu, R.id.scontrol_tv_xzchuancang, R.id.scontrol_tv_fuweixzc, R.id.scontrol_tv_qingqiuxinxi})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.scontrol_tv_yucang_kai:
@@ -185,8 +185,8 @@ public class SControlFragment extends BaseFragment<SControlPresenter, ISControlV
             case R.id.scontrol_tv_shebei_huifu:
                 taskQueue.add(new SeralTask(AppContants.commands.shebei_huifu));
                 break;
-            case R.id.scontrol_tv_jishuxzc:
-                taskQueue.add(new SeralTask(AppContants.commands.jishuxzc));
+            case R.id.scontrol_tv_xzchuancang:
+                taskQueue.add(new SeralTask(AppContants.commands.xzchuancang));
                 break;
             case R.id.scontrol_tv_fuweixzc:
                 taskQueue.add(new SeralTask(AppContants.commands.fuweixzc));

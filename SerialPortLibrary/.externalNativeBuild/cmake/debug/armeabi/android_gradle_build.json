@@ -1,13 +1,10 @@
 
 {
-	"buildFiles" : 
-	[
-		"/Users/apple/Documents/project/WitAgN/SerialPortLibrary/src/main/cpp/CMakeLists.txt"
-	],
+	"buildFiles" : [ "F:/WitAgN/SerialPortLibrary/src/main/cpp/CMakeLists.txt" ],
 	"cFileExtensions" : [ "c" ],
 	"cleanCommands" : 
 	[
-		"/Users/apple/Library/Android/sdk/cmake/3.6.4111459/bin/cmake --build /Users/apple/Documents/project/WitAgN/SerialPortLibrary/.externalNativeBuild/cmake/debug/armeabi --target clean"
+		"E:\\android\\Sdk\\cmake\\3.6.3155560\\bin\\cmake.exe --build F:\\WitAgN\\SerialPortLibrary\\.externalNativeBuild\\cmake\\debug\\armeabi --target clean"
 	],
 	"libraries" : 
 	{
@@ -15,27 +12,27 @@
 		{
 			"abi" : "armeabi",
 			"artifactName" : "SerialPort",
-			"buildCommand" : "/Users/apple/Library/Android/sdk/cmake/3.6.4111459/bin/cmake --build /Users/apple/Documents/project/WitAgN/SerialPortLibrary/.externalNativeBuild/cmake/debug/armeabi --target SerialPort",
+			"buildCommand" : "E:\\android\\Sdk\\cmake\\3.6.3155560\\bin\\cmake.exe --build F:\\WitAgN\\SerialPortLibrary\\.externalNativeBuild\\cmake\\debug\\armeabi --target SerialPort",
 			"buildType" : "debug",
 			"files" : 
 			[
 				
 				{
-					"flags" : "  --target=armv5te-none-linux-androideabi --gcc-toolchain=/Users/apple/Library/Android/sdk/ndk-bundle/toolchains/arm-linux-androideabi-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/apple/Library/Android/sdk/ndk-bundle/sysroot -DSerialPort_EXPORTS  -isystem /Users/apple/Library/Android/sdk/ndk-bundle/sysroot/usr/include/arm-linux-androideabi -D__ANDROID_API__=19 -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv5te -mtune=xscale -msoft-float -fno-integrated-as -mthumb -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC      -c ",
-					"src" : "/Users/apple/Documents/project/WitAgN/SerialPortLibrary/src/main/cpp/SerialPort.c",
-					"workingDirectory" : "/Users/apple/Documents/project/WitAgN/SerialPortLibrary/.externalNativeBuild/cmake/debug/armeabi"
+					"flags" : "  -target armv5te-none-linux-androideabi -gcc-toolchain E:/android/Sdk/ndk-bundle/toolchains/arm-linux-androideabi-4.9/prebuilt/windows-x86_64 --sysroot=E:/android/Sdk/ndk-bundle/platforms/android-19/arch-arm -DSerialPort_EXPORTS  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv5te -mtune=xscale -msoft-float -fno-integrated-as -mthumb -Wa,--noexecstack -Wformat -Werror=format-security -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv5te -mtune=xscale -msoft-float -fno-integrated-as -mthumb -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info -O0 -fno-limit-debug-info  -fPIC      -c ",
+					"src" : "F:/WitAgN/SerialPortLibrary/src/main/cpp/SerialPort.c",
+					"workingDirectory" : "F:/WitAgN/SerialPortLibrary/.externalNativeBuild/cmake/debug/armeabi"
 				}
 			],
-			"output" : "/Users/apple/Documents/project/WitAgN/SerialPortLibrary/build/intermediates/cmake/debug/obj/armeabi/libSerialPort.so",
-			"toolchain" : "2737792678101485901"
+			"output" : "F:/WitAgN/SerialPortLibrary/build/intermediates/cmake/debug/obj/armeabi/libSerialPort.so",
+			"toolchain" : "3905452873"
 		}
 	},
 	"toolchains" : 
 	{
-		"2737792678101485901" : 
+		"3905452873" : 
 		{
-			"cCompilerExecutable" : "/Users/apple/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang",
-			"cppCompilerExecutable" : "/Users/apple/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++"
+			"cCompilerExecutable" : "E:/android/Sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/bin/clang.exe",
+			"cppCompilerExecutable" : "E:/android/Sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/bin/clang++.exe"
 		}
 	}
 }

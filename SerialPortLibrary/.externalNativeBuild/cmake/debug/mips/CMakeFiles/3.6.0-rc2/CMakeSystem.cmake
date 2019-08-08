@@ -1,13 +1,13 @@
-set(CMAKE_HOST_SYSTEM "Darwin-17.7.0")
-set(CMAKE_HOST_SYSTEM_NAME "Darwin")
-set(CMAKE_HOST_SYSTEM_VERSION "17.7.0")
-set(CMAKE_HOST_SYSTEM_PROCESSOR "x86_64")
+set(CMAKE_HOST_SYSTEM "Windows-6.1.7601")
+set(CMAKE_HOST_SYSTEM_NAME "Windows")
+set(CMAKE_HOST_SYSTEM_VERSION "6.1.7601")
+set(CMAKE_HOST_SYSTEM_PROCESSOR "AMD64")
 
-include("/Users/apple/Library/Android/sdk/ndk-bundle/build/cmake/android.toolchain.cmake")
+include("E:/android/Sdk/ndk-bundle/build/cmake/android.toolchain.cmake")
 
-set(CMAKE_SYSTEM "Android-1")
+set(CMAKE_SYSTEM "Android-19")
 set(CMAKE_SYSTEM_NAME "Android")
-set(CMAKE_SYSTEM_VERSION "1")
+set(CMAKE_SYSTEM_VERSION "19")
 set(CMAKE_SYSTEM_PROCESSOR "mips")
 
 set(CMAKE_CROSSCOMPILING "TRUE")

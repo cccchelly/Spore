@@ -56,7 +56,7 @@ public class PostMsgService extends Service {
         @Override
         public void run() {
             //查询是否有可更新补丁
-            SophixManager.getInstance().queryAndLoadNewPatch();
+            //SophixManager.getInstance().queryAndLoadNewPatch();
 
             handler.postDelayed(runnable, ShareUtil.getPostTaskTime());
 
@@ -72,7 +72,7 @@ public class PostMsgService extends Service {
             postMsgBean.setImei(AppMsgUtil.getIMEI(App.getAppContext()));
             postMsgBean.setLatitude(ShareUtil.getLatitude()+"");
             postMsgBean.setLongitude(ShareUtil.getLongitude()+"");
-            postMsgBean.setMsta(ShareUtil.getMsta());
+            postMsgBean.setMsta(ShareUtil.getRain());
             postMsgBean.setTemp(ShareUtil.getTemp());
             postMsgBean.setHum(ShareUtil.getHum());
             postMsgBean.setFirstStart(false);

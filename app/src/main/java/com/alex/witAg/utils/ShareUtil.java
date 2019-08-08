@@ -165,12 +165,12 @@ public class ShareUtil {
     }
 
     // 雨水状态
-    public static void saveMsta(String msta){
+    public static void saveRain(String msta){
         SharedPreferences.Editor editor = getShare().edit();
         editor.putString(Msta,msta);
         editor.apply();
     }
-    public static String getMsta(){
+    public static String getRain(){
         String sta = getShare().getString(Msta,"0");
         return sta;
     }

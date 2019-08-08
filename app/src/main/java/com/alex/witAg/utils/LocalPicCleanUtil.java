@@ -1,5 +1,6 @@
 package com.alex.witAg.utils;
 
+import android.os.Environment;
 import android.util.Log;
 
 import com.alex.witAg.bean.PicPathsBean;
@@ -17,6 +18,7 @@ import java.util.List;
 public class LocalPicCleanUtil {
 
     public static void doCleanIfNecessary(){
+        cleanLog();
         if (!isNeedClean())
             return;
 
@@ -31,6 +33,10 @@ public class LocalPicCleanUtil {
 
         }
 
+    }
+
+    private static void cleanLog(){
+        DeleteUtil.delete(Environment.getExternalStorageDirectory().getAbsolutePath(), false, ".log");
     }
 
     private  static boolean isNeedClean(){ //可用内存小于十分之一总内存则需要清理

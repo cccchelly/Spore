@@ -11,6 +11,7 @@ import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.alex.witAg.App;
 import com.alex.witAg.AppContants;
 import com.alex.witAg.R;
 import com.alex.witAg.base.BaseActivity;
@@ -28,6 +29,7 @@ import com.alex.witAg.ui.fragment.BaseMsgFragment;
 import com.alex.witAg.ui.fragment.LampControlFragment;
 import com.alex.witAg.ui.fragment.SControlFragment;
 import com.alex.witAg.ui.fragment.TakePhotoFragment;
+import com.alex.witAg.utils.AppMsgUtil;
 import com.alex.witAg.utils.ShareUtil;
 import com.alex.witAg.utils.TaskServiceUtil;
 import com.alex.witAg.view.LeftTabView;
@@ -100,7 +102,7 @@ public class MainActivity extends BaseActivity<MainPresenter, IMainView> impleme
         postMsgBean.setHighsta(ShareUtil.getCaptureHignSta());
         postMsgBean.setSta(ShareUtil.getDeviceStatue());
         postMsgBean.setError(ShareUtil.getDeviceError());
-        //postMsgBean.setImei(AppMsgUtil.getIMEI(App.getAppContext()));
+        postMsgBean.setImei(AppMsgUtil.getIMEI(App.getAppContext()));
         postMsgBean.setLatitude(ShareUtil.getLatitude() + "");
         postMsgBean.setLongitude(ShareUtil.getLongitude() + "");
         postMsgBean.setFirstStart(true);

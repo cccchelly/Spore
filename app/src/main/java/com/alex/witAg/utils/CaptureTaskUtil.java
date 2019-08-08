@@ -1,11 +1,15 @@
 package com.alex.witAg.utils;
 
 import android.content.Context;
+import android.os.Handler;
+import android.os.Message;
 import android.text.TextUtils;
 import android.util.Log;
 
 import com.alex.witAg.App;
+import com.alex.witAg.AppContants;
 import com.alex.witAg.adapter.DeviceAdapter;
+import com.alex.witAg.camreaproxy.CameraManager;
 import com.alex.witAg.taskqueue.SeralTask;
 import com.alex.witAg.taskqueue.TaskQueue;
 import com.kongqw.serialportlibrary.Device;
@@ -38,6 +42,12 @@ public class CaptureTaskUtil implements
     StringBuilder captureStrBuilder = new StringBuilder();//摄像头返回的参数处理
     StringBuilder newDeviceStrBuilder = new StringBuilder();//设备信息返回的参数处理(新定义包含温湿度等的)
 
+    Handler toastHandle = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            ToastUtils.showToast(msg.obj.toString());
+        }
+    };
 
     private static CaptureTaskUtil captureTaskUtil = null;
 
@@ -66,7 +76,7 @@ public class CaptureTaskUtil implements
 
         mDeviceAdapter = new DeviceAdapter(context, mDevices);
         /*这里要找到对应的串口，看接的是哪个口子，连接相应的端口*/
-        mSerialPortManager.closeSerialPort();
+        //mSerialPortManager.closeSerialPort();
 
         Device device;
         int index = ShareUtil.getSeraIndex();
@@ -106,53 +116,70 @@ public class CaptureTaskUtil implements
                 .setOnSerialPortDataListener(new OnSerialPortDataListener() {
                     @Override
                     public void onDataReceived(byte[] bytes) {
-                        App.setIsWaitTaskFinish(false);
-                        //String str = TextChangeUtil.ByteToString(bytes);
                         String str = TextChangeUtil.ByteToString(bytes);
-                        Log.i(TAG, "onDataReceived [ byte[] ]: " + Arrays.toString(bytes));
-                        Log.i(TAG, "onDataReceived [ String ]: " + str);
+                        Log.i(TAG, "==onDataReceived [ byte[] ]: " + Arrays.toString(bytes));
+                        Log.i(TAG, "==onDataReceived [ String ]: " + str);
                         handleCallbackMsg(str);
                     }
 
                     @Override
                     public void onDataSent(byte[] bytes) {
-                        Log.i(TAG, "onDataSent [ byte[] ]: " + Arrays.toString(bytes));
-                        Log.i(TAG, "onDataSent [ String ]: " + new String(bytes));
+                        Log.i(TAG, "==onDataSent [ byte[] ]: " + Arrays.toString(bytes));
+                        Log.i(TAG, "==onDataSent [ String ]: " + new String(bytes));
                         final byte[] finalBytes = bytes;
                         Log.i(TAG, String.format("发送\n%s", new String(finalBytes)));
                     }
                 })
                 .openSerialPort(device.getFile(), 9600);
 
-        Log.i(TAG, "onCreate: openSerialPort = " + openSerialPort);
+        Log.i(TAG, "onCreate: openSerialPort == " + openSerialPort);
         return openSerialPort;
     }
 
     /*处理指令反馈和设备信息返回参数*/
     private void handleCallbackMsg(String str) {
         if (str.contains("cmd:1")) {
+            App.setIsWaitTaskFinish(false);
             saveDeviceMsg(str);
         } else if (str.contains("cmd:2")) {
+            //根据取到的值判断是否到目标状态  因为硬件可能发送很多中间状态回来
             saveCommandMsg(str);
         } else if (str.contains("cmd:3")) {
-
+            App.setIsWaitTaskFinish(false);
+            toastOnMain("设备忙");
         }
     }
 
-    //保存命令返回参数
+    private void toastOnMain(String content) {
+        Message msg = Message.obtain();
+        msg.what = 0;
+        msg.obj = content;
+        toastHandle.sendMessage(msg);
+    }
+
+    //保存命令返回参数 (设备状态码和错误码)
     private void saveCommandMsg(String string) {
         PostTaskMsgUtil.instance().postMsg(2, string);
+        Log.i("==设备码：==", string);
 
-        Log.i("==相机：==", string);
-        /*CAMsta:x (摄像头电源控制)       x=0----摄像机电源关闭           x=1----摄像机电源开起
-          HIGHsta:x （绿板高度状态）    x=1---5（5个状态高度）
-          error:x     x=0----舱门电机和高度调节电机无故障        x=1----舱门电机有故障     x=2----高度调节电机有故障 */
         String camSta = CommandBackStrUtil.getInstance().getCapValue(string, 1);
-        String highSta = CommandBackStrUtil.getInstance().getCapValue(string, 2);
-        String error = CommandBackStrUtil.getInstance().getCapValue(string, 3);
-        ShareUtil.saveCaptureCamSta(camSta);
-        ShareUtil.saveCaptureHignSta(highSta);
-        ShareUtil.saveCaptureErrorSta(error);
+        String error = CommandBackStrUtil.getInstance().getCapValue(string, 2);
+
+        if (TextUtils.equals(camSta,App.getToDeviceSta())){
+            com.alex.witAg.utils.LogUtil.i("==到达任务目标状态=="+App.getToDeviceSta());
+            App.setIsWaitTaskFinish(false);
+        }
+        if (!TextUtils.equals(error,"00")){
+            App.setIsWaitTaskFinish(false);
+        }
+
+        if (TextUtils.equals(camSta,"27")){
+            takePhoto();
+        }
+
+        Log.i("==","状态码："+camSta+"，错误码"+error);
+        ShareUtil.saveDeviceStatue(camSta);
+        ShareUtil.saveDeviceError(error);
     }
 
     /*保存查询到的设备参数*/
@@ -164,12 +191,36 @@ public class CaptureTaskUtil implements
         String temp = DeviceInfoStrUtil.getValue(str, 4);
         String hum = DeviceInfoStrUtil.getValue(str, 5);
 
+        Log.i("==","电池电压："+volBat+"，太阳能电压："+volSun+",雨水："+msta+"，温度："+temp+"，湿度："+hum);
+
         ShareUtil.saveDeviceBatvol(volBat);
         ShareUtil.saveDeviceSunvol(volSun);
-        ShareUtil.saveMsta(msta);
+        ShareUtil.saveRain(msta);
         ShareUtil.saveTemp(temp);
         ShareUtil.saveHum(hum);
 
+    }
+
+    private void takePhoto() {
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    CameraManager cameraManager = CameraManager.getInstance();
+                    cameraManager.initCamera();
+                    cameraManager.connectCamera();
+                    try {
+                        Thread.sleep(2000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    cameraManager.captureExecute(AppContants.CaptureFrom.FROM_TASK);
+                    try {
+                        Thread.sleep(2000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }).start();
     }
 
     /**

@@ -44,7 +44,7 @@ public abstract class SerialPortReadThread extends Thread {
                 if (null == mInputStream) {
                     return;
                 }
-                byte[] readBytes = new byte[64];
+                byte[] readBytes = new byte[256];
                 int size  = mInputStream.read(readBytes);
                 if (size>0){
                     onDataReceived(readBytes);

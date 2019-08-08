@@ -78,9 +78,9 @@ public class DataFragment extends BaseFragment<DataPresenter, IDataView> impleme
         tvBatvolStatus.setText(ShareUtil.getDeviceBatvol());
         tvSunvvolStatus.setText(ShareUtil.getDeviceSunvol());
         tvDianjiStatus.setText(ShareUtil.getDeviceError());
-        if (TextUtils.equals(ShareUtil.getMsta(),"1")){
+        if (TextUtils.equals(ShareUtil.getRain(),"1")){
             mTvMsta.setText("有雨水");
-        }else if (TextUtils.equals(ShareUtil.getMsta(),"0")){
+        }else if (TextUtils.equals(ShareUtil.getRain(),"0")){
             mTvMsta.setText("无雨水");
         }
         mTvTemp.setText(ShareUtil.getTemp()+"℃");

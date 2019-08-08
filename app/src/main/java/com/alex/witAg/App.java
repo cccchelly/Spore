@@ -128,6 +128,16 @@ public class App extends MultiDexApplication {
 
     private static boolean isWaitTaskFinish = false; //等待任务队列中当前任务执行完
 
+    private static String toDeviceSta = ""; //想要执行到的目标设备状态码   用于串口发送后保存到这里  接受到回调后判断是否到相应状态
+
+    public static String getToDeviceSta() {
+        return toDeviceSta;
+    }
+
+    public static void setToDeviceSta(String toDeviceSta) {
+        App.toDeviceSta = toDeviceSta;
+    }
+
     public static boolean isIsWaitTaskFinish() {
         return isWaitTaskFinish;
     }

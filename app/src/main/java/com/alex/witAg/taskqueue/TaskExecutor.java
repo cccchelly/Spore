@@ -11,7 +11,8 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 public class TaskExecutor extends Thread {
     private long startTime = 0;
-    private long waitTime = 1000*60*4; //等待四分钟
+    private long waitTime = 1000*60*7; //等待串口信息回复
+    //private long waitTime = 1000*5; //等待5秒
     // 任务队列
     private BlockingQueue<ITask> taskQueue;
 
