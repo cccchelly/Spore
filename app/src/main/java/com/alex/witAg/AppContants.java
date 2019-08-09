@@ -26,7 +26,7 @@ public interface AppContants {
     int TASK_DEFAULT_TIME = 24*60*60*1000; //定时任务默认时间ms
     String START_TASK_DEFAULT_TIME = "12:00"; //定时任务默认开始时间
     int PASS_CHECK_DEFAULT_TIME =  10*60*1000; //默认密码验证超时时间
-    int POST_MESSAGE_TIME = 5*60*1000; //定时上传设备信息
+    int POST_MESSAGE_TIME = 10*60*1000; //定时上传设备信息
     String SHOW_PIC_URL_KEY = "SHOW_PIC_URL_KEY";
 
     String strIP = "192.168.0.64";//默认IP地址
@@ -42,7 +42,7 @@ public interface AppContants {
     String UMENG_SECERT = "1fe6a20054bcef865eeb0991ee84525b";  //Push推送业务的secret
 
     //屏幕隔多长时间不操作后休眠
-    long screenSleepTime =  60*1000;
+    long screenSleepTime =  5*60*1000;
 
     //0  0  2592  1944  500w相机设置最大分辨率
     int width = 2592;
