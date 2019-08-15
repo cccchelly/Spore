@@ -22,15 +22,16 @@ import com.alex.witAg.utils.ActivityBrightnessManager;
 import com.alex.witAg.utils.AppMsgUtil;
 import com.alex.witAg.utils.MyLifecycleHandler;
 import com.alex.witAg.utils.ShareUtil;
+import com.alex.witAg.utils.TimeUtils;
 import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
-import com.taobao.sophix.SophixManager;
 
 import org.litepal.crud.DataSupport;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -61,6 +62,11 @@ public class PostMsgService extends Service {
             handler.postDelayed(runnable, ShareUtil.getPostTaskTime());
 
             taskQueue.add(new SeralTask(AppContants.commands.qingqiuxinxi));
+
+            //把当前的时间传给硬件
+            String timeStr = "BJ"+
+                    TimeUtils.millis2String(System.currentTimeMillis(),new SimpleDateFormat("yyyyMMddHHmmss"))+getWeekday();
+            taskQueue.add(new SeralTask(timeStr));
 
             Log.i("==post_msg===","post_msg.");
             PostMsgBean postMsgBean = new PostMsgBean();
@@ -95,6 +101,19 @@ public class PostMsgService extends Service {
                     });
         }
     };
+
+    private String getWeekday(){
+        Calendar calendar = Calendar.getInstance();
+        Date date = new Date();
+        calendar.setTime(date);
+        int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK)-1;
+        if(dayOfWeek <0)dayOfWeek=0;
+        if (dayOfWeek ==0){
+            return "7";
+        }else {
+            return dayOfWeek+"";
+        }
+    }
 
     @Override
     public void onCreate() {

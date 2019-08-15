@@ -51,8 +51,8 @@ public class LampTimeUtil {
 
         //保存添加后的时间区域列表
         setTimeAreaList(taskTimeBeans);
-        //刷新本地时间点列表数据
-        setMinList();
+        //刷新本地时间点列表数据  改成只配置了
+        //setMinList();
         return true;
     }
 
@@ -73,8 +73,8 @@ public class LampTimeUtil {
         Log.i("==timeaferdelete",taskTimeBeans.toString());
         //保存删除后的时间区域列表
         setTimeAreaList(taskTimeBeans);
-        //刷新本地时间点列表数据
-        setMinList();
+        //刷新本地时间点列表数据   改成只配置了
+        //setMinList();
     }
 
     private void setMinList() {

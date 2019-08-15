@@ -53,7 +53,7 @@
 
             <TextView
                 android:textColor="@color/white"
-                android:text="时间控制"
+                android:text="灯管控制"
                 android:textSize="21sp"
                 android:drawablePadding="18dp"
                 android:drawableLeft="@mipmap/sjkz"

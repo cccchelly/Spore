@@ -147,6 +147,8 @@ public class CaptureTaskUtil implements
         } else if (str.contains("cmd:3")) {
             App.setIsWaitTaskFinish(false);
             toastOnMain("设备忙");
+        }else if (str.contains("time_ok")){
+            App.setIsWaitTaskFinish(false);
         }
     }
 
@@ -170,6 +172,10 @@ public class CaptureTaskUtil implements
             App.setIsWaitTaskFinish(false);
         }
         if (!TextUtils.equals(error,"00")){
+            App.setIsWaitTaskFinish(false);
+        }
+
+        if (TextUtils.equals(camSta,"21")){ //时控特殊处理
             App.setIsWaitTaskFinish(false);
         }
 

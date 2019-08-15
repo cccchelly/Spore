@@ -28,8 +28,8 @@ public class TaskServiceUtil {
         App.getAppContext().startService(mqttIntent);
         Intent postMsgIntent = new Intent(App.getAppContext(), PostMsgService.class);
         App.getAppContext().startService(postMsgIntent);
-        Intent lampIntent = new Intent(App.getAppContext(), LampTaskService.class);   //开启服务控制灯管
-        App.getAppContext().startService(lampIntent);
+        /*Intent lampIntent = new Intent(App.getAppContext(), LampTaskService.class);   //开启服务控制灯管
+        App.getAppContext().startService(lampIntent);*/
     }
 
 
@@ -46,8 +46,8 @@ public class TaskServiceUtil {
         App.getAppContext().stopService(mqttIntent);
         Intent postMsgIntent = new Intent(App.getAppContext(), PostMsgService.class);
         App.getAppContext().stopService(postMsgIntent);
-        Intent lampIntent = new Intent(App.getAppContext(), LampTaskService.class);   //关闭服务控制灯管
-        App.getAppContext().stopService(lampIntent);
+        /*Intent lampIntent = new Intent(App.getAppContext(), LampTaskService.class);   //关闭服务控制灯管
+        App.getAppContext().stopService(lampIntent);*/
     }
 
     public static void  startPhotoTasks(){

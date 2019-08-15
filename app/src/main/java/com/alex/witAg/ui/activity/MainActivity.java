@@ -26,7 +26,7 @@ import com.alex.witAg.presenter.MainPresenter;
 import com.alex.witAg.presenter.viewImpl.IMainView;
 import com.alex.witAg.ui.fragment.AboutFragment;
 import com.alex.witAg.ui.fragment.BaseMsgFragment;
-import com.alex.witAg.ui.fragment.LampControlFragment;
+import com.alex.witAg.ui.fragment.LampControlNewFragment;
 import com.alex.witAg.ui.fragment.SControlFragment;
 import com.alex.witAg.ui.fragment.TakePhotoFragment;
 import com.alex.witAg.utils.AppMsgUtil;
@@ -59,7 +59,7 @@ public class MainActivity extends BaseActivity<MainPresenter, IMainView> impleme
     @BindView(R.id.main_rl_topbar)
     RelativeLayout mRlTopbar;
     private BaseMsgFragment mBaseMsgFragment;
-    private LampControlFragment mLampConFragment;
+    private LampControlNewFragment mLampConFragment;
     private SControlFragment mSControlFragment;
     private TakePhotoFragment mTakePhotoFragment;
     private AboutFragment mAboutFragment;
@@ -193,14 +193,14 @@ public class MainActivity extends BaseActivity<MainPresenter, IMainView> impleme
         int currentTabPosition = 0;
         if (savedInstanceState != null) {//内存重启
             mBaseMsgFragment = (BaseMsgFragment) getSupportFragmentManager().findFragmentByTag("HomeFragment");
-            mLampConFragment = (LampControlFragment) getSupportFragmentManager().findFragmentByTag("SettingFragment");
+            mLampConFragment = (LampControlNewFragment) getSupportFragmentManager().findFragmentByTag("SettingFragment");
             mSControlFragment = (SControlFragment) getSupportFragmentManager().findFragmentByTag("DataFragment");
             mTakePhotoFragment = (TakePhotoFragment) getSupportFragmentManager().findFragmentByTag("ControlFragment");
             mAboutFragment = (AboutFragment) getSupportFragmentManager().findFragmentByTag("AboutFragment");
             currentTabPosition = savedInstanceState.getInt(AppContants.HOME_CURRENT_TAB_POSITION);
         } else {
             mBaseMsgFragment = new BaseMsgFragment();
-            mLampConFragment = new LampControlFragment();
+            mLampConFragment = new LampControlNewFragment();
             mSControlFragment = new SControlFragment();
             mTakePhotoFragment = new TakePhotoFragment();
             mAboutFragment = new AboutFragment();

@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Gradle: __local_jars__:/Users/apple/Documents/project/WitAgN/sdk/libs/jna.jar:unspecified@jar">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/sdk/libs/jna.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

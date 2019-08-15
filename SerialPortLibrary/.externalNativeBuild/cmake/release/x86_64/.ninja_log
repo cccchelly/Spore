@@ -1,7 +1,3 @@
 # ninja log v5
-0	125	0	CMakeFiles/SerialPort.dir/SerialPort.c.o	d4127074dec7ec88
-127	281	0	F:/WitAgN/SerialPortLibrary/build/intermediates/cmake/release/obj/x86_64/libSerialPort.so	b73e99e54341b826
-2	419	0	CMakeFiles/SerialPort.dir/SerialPort.c.o	d4127074dec7ec88
-420	809	0	F:/WitAgN/SerialPortLibrary/build/intermediates/cmake/release/obj/x86_64/libSerialPort.so	b73e99e54341b826
-3	302	0	CMakeFiles/SerialPort.dir/SerialPort.c.o	d4127074dec7ec88
-302	698	0	F:/WitAgN/SerialPortLibrary/build/intermediates/cmake/release/obj/x86_64/libSerialPort.so	b73e99e54341b826
+0	721	0	CMakeFiles/SerialPort.dir/SerialPort.c.o	fb1d33f94e4c1973
+722	1266	0	/Users/apple/Documents/project/WitAgN/SerialPortLibrary/build/intermediates/cmake/release/obj/x86_64/libSerialPort.so	f740fcaa077479fe
