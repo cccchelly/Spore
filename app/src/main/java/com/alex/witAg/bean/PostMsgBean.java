@@ -33,6 +33,15 @@ public class PostMsgBean {
     private String temp;
     private String hum;
     private String pics;
+    private String mqttMessage;
+
+    public String getMqttMessage() {
+        return mqttMessage;
+    }
+
+    public void setMqttMessage(String mqttMessage) {
+        this.mqttMessage = mqttMessage;
+    }
 
     public String getPics() {
         return pics;

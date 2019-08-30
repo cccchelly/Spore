@@ -2,8 +2,6 @@ package com.alex.witAg.presenter;
 
 import android.text.TextUtils;
 import android.util.Log;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.alex.witAg.App;
 import com.alex.witAg.base.BaseObserver;
@@ -41,6 +39,7 @@ public class BindCompanyPresenter extends BasePresenter<IBindCompanyView> {
             requestBean.setName(name);
             requestBean.setPhone(tel);
             requestBean.setPassword(pass);
+            requestBean.setType("3"); //新型测报灯
             /*requestBean.setLatitude("1111111");
             requestBean.setLongitude("2222222");
             requestBean.setPhotoInterval(1);

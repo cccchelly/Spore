@@ -1,5 +1,7 @@
 package com.alex.witAg.bean;
 
+import java.util.List;
+
 /**
  * Created by Administrator on 2018-05-03.
  */
@@ -7,71 +9,37 @@ package com.alex.witAg.bean;
 public class MqttMsgBean {
 
     /**
-     * o : task_setting
-     * d : {"cmd":"high2","start_time":1111111111111111111,"delay":200}
+     * type : android_control
+     * cmd : time_control
+     * control : [{"startTime":"2333333333333","endTime":"5555555555555","delay":"20"},{"startTime":"2333333333333","endTime":"5555555555555","delay":"140"}]
      */
 
-    private String o;
-    private DBean d;
+    private String type;
+    private String cmd;
+    private List<TaskTimeBean> control;
 
-    public String getO() {
-        return o;
+    public String getType() {
+        return type;
     }
 
-    public void setO(String o) {
-        this.o = o;
+    public void setType(String type) {
+        this.type = type;
     }
 
-    public DBean getD() {
-        return d;
+    public String getCmd() {
+        return cmd;
     }
 
-    public void setD(DBean d) {
-        this.d = d;
+    public void setCmd(String cmd) {
+        this.cmd = cmd;
     }
 
-    public static class DBean {
-        /**
-         * cmd : high2
-         * start_time : 1111111111111111111
-         * delay : 200
-         */
-
-        private String cmd;
-        private long start_time;
-        private long end_time;
-        private int delay;
-
-        public long getEnd_time() {
-            return end_time;
-        }
-
-        public void setEnd_time(long end_time) {
-            this.end_time = end_time;
-        }
-
-        public String getCmd() {
-            return cmd;
-        }
-
-        public void setCmd(String cmd) {
-            this.cmd = cmd;
-        }
-
-        public long getStart_time() {
-            return start_time;
-        }
-
-        public void setStart_time(long start_time) {
-            this.start_time = start_time;
-        }
-
-        public int getDelay() {
-            return delay;
-        }
-
-        public void setDelay(int delay) {
-            this.delay = delay;
-        }
+    public List<TaskTimeBean> getControl() {
+        return control;
     }
+
+    public void setControl(List<TaskTimeBean> control) {
+        this.control = control;
+    }
+
 }

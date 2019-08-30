@@ -1,3 +1,5 @@
 # ninja log v5
 0	585	0	CMakeFiles/SerialPort.dir/SerialPort.c.o	2c070ebc7cf8e6e7
 585	854	0	/Users/apple/Documents/project/WitAgN/SerialPortLibrary/build/intermediates/cmake/release/obj/arm64-v8a/libSerialPort.so	a30f3c000a63bad4
+1	266	0	CMakeFiles/SerialPort.dir/SerialPort.c.o	2c070ebc7cf8e6e7
+266	602	0	/Users/apple/Documents/project/WitAgN/SerialPortLibrary/build/intermediates/cmake/release/obj/arm64-v8a/libSerialPort.so	a30f3c000a63bad4

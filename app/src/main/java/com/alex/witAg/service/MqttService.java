@@ -1,43 +1,30 @@
 package com.alex.witAg.service;
 
 import android.app.Service;
-import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
 
 import com.alex.witAg.App;
-import com.alex.witAg.AppContants;
 import com.alex.witAg.base.BaseObserver;
 import com.alex.witAg.base.BaseResponse;
 import com.alex.witAg.bean.MqttMsgBean;
-import com.alex.witAg.bean.PhotoSetResponseBean;
 import com.alex.witAg.bean.PicPathsBean;
+import com.alex.witAg.bean.PostMsgBean;
+import com.alex.witAg.bean.PostMsgResultBean;
 import com.alex.witAg.bean.TaskTimeBean;
-import com.alex.witAg.camreaproxy.CameraManager;
 import com.alex.witAg.http.AppDataManager;
 import com.alex.witAg.http.network.Net;
 import com.alex.witAg.taskqueue.SeralTask;
-import com.alex.witAg.taskqueue.TaskExecutor;
 import com.alex.witAg.taskqueue.TaskQueue;
 import com.alex.witAg.utils.AppMsgUtil;
-import com.alex.witAg.utils.AppUpdateUtil;
 import com.alex.witAg.utils.CapturePostUtil;
-import com.alex.witAg.utils.CaptureTaskUtil;
-import com.alex.witAg.utils.FileUtils;
-import com.alex.witAg.utils.LogUtil;
-import com.alex.witAg.utils.SerialInforStrUtil;
 import com.alex.witAg.utils.ShareUtil;
 import com.alex.witAg.utils.TaskServiceUtil;
 import com.alex.witAg.utils.TaskTimeUtil;
-import com.alex.witAg.utils.TimeUtils;
-import com.alex.witAg.utils.ToastUtils;
 import com.google.gson.Gson;
-import com.google.gson.JsonSyntaxException;
 
 import org.eclipse.paho.android.service.MqttAndroidClient;
 import org.eclipse.paho.client.mqttv3.IMqttActionListener;
@@ -47,13 +34,8 @@ import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
-import org.greenrobot.eventbus.EventBus;
-import org.json.JSONException;
 import org.litepal.crud.DataSupport;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -74,11 +56,12 @@ public class MqttService extends Service {
 
     //mosquitto_sub -t HelloWord -h 59.110.240.44
 
-   // private String host = "tcp://59.110.240.44:1883";
-    private String host = AppContants.MQTT_BASE_URL;
+    private String host = "tcp://192.168.1.33:1883";
+    //private String host = AppContants.MQTT_BASE_URL;
     private String userName = "admin";
     private String passWord = "password";
-    private static String myTopic = "Device/DFS/cid" + AppMsgUtil.getIMEI(App.getAppContext());
+    //private static String myTopic = "Device/DFS/cid" + AppMsgUtil.getIMEI(App.getAppContext());
+    private static String myTopic = "MQTT/TOPIC";
     private String clientId = "test";
 
     @Override
@@ -192,7 +175,7 @@ public class MqttService extends Service {
         @Override
         public void onFailure(IMqttToken arg0, Throwable arg1) {
             arg1.printStackTrace();
-            // 连接失败，重连
+            // 连接失败
         }
     };
 
@@ -201,11 +184,13 @@ public class MqttService extends Service {
 
         @Override
         public void messageArrived(String topic, MqttMessage message) throws Exception {
+            client.messageArrivedComplete(message.getId(),message.getQos());
 
             String str1 = new String(message.getPayload());
             String str2 = topic + ";qos:" + message.getQos() + ";retained:" + message.isRetained();
             Log.i(TAG, "id:"+message.getId()+",messageArrived:" + str1);
             Log.i(TAG, str2);
+            postMqttMsg(str1);
             dealMsg(str1);
         }
 
@@ -216,10 +201,44 @@ public class MqttService extends Service {
 
         @Override
         public void connectionLost(Throwable arg0) {
-            // 失去连接，重连
-
+            // 失去连接
         }
     };
+
+    private void postMqttMsg(String str){
+        PostMsgBean postMsgBean = new PostMsgBean();
+        postMsgBean.setSunvol(ShareUtil.getDeviceSunvol());
+        postMsgBean.setBatvol(ShareUtil.getDeviceBatvol());
+        postMsgBean.setHighsta(ShareUtil.getCaptureHignSta());
+        postMsgBean.setSta(ShareUtil.getDeviceStatue());
+        postMsgBean.setError(ShareUtil.getDeviceError());
+        postMsgBean.setImei(AppMsgUtil.getIMEI(App.getAppContext()));
+        postMsgBean.setLatitude(ShareUtil.getLatitude()+"");
+        postMsgBean.setLongitude(ShareUtil.getLongitude()+"");
+        postMsgBean.setMsta(ShareUtil.getRain());
+        postMsgBean.setTemp(ShareUtil.getTemp());
+        postMsgBean.setHum(ShareUtil.getHum());
+        postMsgBean.setFirstStart(false);
+
+        postMsgBean.setMqttMessage(str);
+
+        try {
+            List<PicPathsBean> picPaths = DataSupport.findAll(PicPathsBean.class);
+            postMsgBean.setPics("本地图片数量："+picPaths.size()+"；名字="+picPaths.toString());
+        }catch (Exception e){
+        }
+
+        AppDataManager.getInstence(Net.URL_KIND_BASE)
+                .postDeviceMsg(postMsgBean)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new BaseObserver<BaseResponse<PostMsgResultBean>>() {
+                    @Override
+                    public void onSuccess(BaseResponse<PostMsgResultBean> response) {
+
+                    }
+                });
+    }
 
     //处理收到的消息
     private void dealMsg(String msg) {
@@ -227,178 +246,43 @@ public class MqttService extends Service {
             return;
         }
         try {
-            MqttMsgBean msgBean = new Gson().fromJson(msg, MqttMsgBean.class);
-            String oprate = msgBean.getO();
-            if (!TextUtils.isEmpty(oprate)) {
-                switch (oprate) {   //判断操作类型
-                    case "op_camera":  //相机
-                        dealCmdStr(msgBean.getD().getCmd());
-                        break;
-                    case "op_board": // 粘虫板
-                        dealCmdStr(msgBean.getD().getCmd());
-                        break;
-                    case "app_task":  //定时任务
-                        dealCmdStr(msgBean.getD().getCmd());
-                        break;
+            MqttMsgBean msgBean = new Gson().fromJson(msg,MqttMsgBean.class);
+            switch (msgBean.getType()){
+                case "command": //执行串口命令
+                    taskQueue.add(new SeralTask(msgBean.getCmd()));
+                    break;
+                case "android_control":
+                    switch (msgBean.getCmd()){
+                        case "post_picture": //上传本地照片
+                            postLocalPicture();
+                            break;
+                        case "time_control"://设置拍照时间
+                            setCaptureTask(msgBean.getControl());
+                            break;
+                    }
 
-                    case "task_setting"://设置定时任务开始时间和间隔
-                        setTask(msgBean.getD().getStart_time(),msgBean.getD().getEnd_time(), msgBean.getD().getDelay());
-                        break;
-                    case "post_time":
-                        setPostTime(msgBean.getD().getDelay());
-                        break;
-                    case "picture":
-                        dealPicture(msgBean.getD().getCmd());
-                        break;
-                }
+                    break;
             }
-        } catch (JsonSyntaxException e) {
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
 
-    private void setPostTime(int delay) {
-        ShareUtil.setPostTaskTime(delay*60*1000);
-    }
-
-    private void dealPicture(String cmd){
-        List<PicPathsBean> picPaths = DataSupport.findAll(PicPathsBean.class);
-        if (picPaths.size()<=0)
-            return;
-        List<String>  deletePaths = new ArrayList<>();
-        try {
-
-            if (TextUtils.equals(cmd,"all")){
-                for (PicPathsBean pathsBean : picPaths){
-                    deletePaths.add(pathsBean.getPath());
-                }
-            }else {
-                if (TextUtils.isEmpty(cmd))
-                    return;
-                String[] split = cmd.split(",");
-                for (String s :split){
-                    deletePaths.add(s);
-                }
+    private void setCaptureTask(List<TaskTimeBean> times){
+        new Thread(()->{
+            TaskTimeUtil.getInstance().clearTimes(); //删除旧时间
+            for (TaskTimeBean task : times){ //添加新时间
+                TaskTimeUtil.getInstance().addTime(task);
             }
-
-            for (String path :deletePaths){
-                try{
-                    File file = FileUtils.getFileFromSdcard(path);
-                    //删除文件
-                    FileUtils.deleteFile(file);
-                    //数据库删除文件名
-                    DataSupport.deleteAll(PicPathsBean.class,"path = ?",path);
-                }catch (NullPointerException e){
-                    //未找到图片（如人为删除了图片），从数据库清除图片地址
-                    //数据库删除文件名
-                    DataSupport.deleteAll(PicPathsBean.class,"path = ?",path);
-                }
-            }
-
-        }catch (Exception e){
-            ToastUtils.showToast("删除图片出错");
-        }
-    }
-
-    /*根据需要发送的消息类型选择对应的消息给串口*/
-    private void dealCmdStr(String cmd) {
-        CaptureTaskUtil captureTaskUtil = CaptureTaskUtil.instance();
-        switch (cmd) {
-            case "task_rest"://重启定时任务
-                TaskServiceUtil.resetPhotoTasks();
-                break;
-            case "app_reset"://重启app
-                AppUpdateUtil.restartApp();
-                break;
-            case "post_pic": //上传本地图片
-                new Thread(() -> CapturePostUtil.findLocalPic()).start();
-                break;
-
-
-            case "capture":   //执行相机拍照
-                capture();
-                break;
-            case "positive": //打开摄像机并翻转到正面
-                taskQueue.add(new SeralTask(SerialInforStrUtil.openCamTurnPositive()));
-                break;
-            case "opposite": //反面
-                taskQueue.add(new SeralTask(SerialInforStrUtil.getDeclineStr()));
-                break;
-            case "reset":   //强制复位
-                taskQueue.add(new SeralTask(SerialInforStrUtil.getForceRestartStr()));
-                break;
-            case "high1":   //调节到高度1
-                captureTaskUtil.setHighAfterReset(taskQueue, SerialInforStrUtil.getHighStr1());
-                break;
-            case "high2":   //调节到高度2
-                captureTaskUtil.setHighAfterReset(taskQueue, SerialInforStrUtil.getHighStr2());
-                break;
-            case "high3":   //调节到高度3
-                captureTaskUtil.setHighAfterReset(taskQueue, SerialInforStrUtil.getHighStr3());
-                break;
-            case "high4":   //调节到高度4
-                captureTaskUtil.setHighAfterReset(taskQueue, SerialInforStrUtil.getHighStr4());
-                break;
-            case "high5":   //调节到高度5
-                captureTaskUtil.setHighAfterReset(taskQueue, SerialInforStrUtil.getHighStr5());
-                break;
-        }
-    }
-
-    public void setTask(long startTime,long endTime, int time) {
-        int logoFlag = 1;
-        if (time < 10) {
-            ToastUtils.showToast("时间间隔应至少十分钟");
-        } else if (endTime == 0){
-            AppDataManager.getInstence(Net.URL_KIND_COMPANY)
-                    .setPhotoTask(ShareUtil.getToken(), startTime + "", time, logoFlag, 0)
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new BaseObserver<BaseResponse<PhotoSetResponseBean>>() {
-                        @Override
-                        public void onSuccess(BaseResponse<PhotoSetResponseBean> response) {
-                            Log.i("==settingPhotoTask==", response.toString());
-                            if (response.getCode() == BaseResponse.RESULT_CODE_SUCCESS) {
-                                ShareUtil.saveTaskTime(time * 60 * 1000);
-                                ShareUtil.saveStartTaskTime(startTime);
-                                ShareUtil.saveCaptureQuality(0);
-                                ToastUtils.showToast("设置成功,重新启动服务");
-                                //AppUpdateUtil.restartApp();
-                                TaskServiceUtil.resetPhotoTasks();
-                            } else if (response.getCode() == BaseResponse.RESULT_CODE_DEVICE_UNBIND) {
-                                ToastUtils.showToast("token无效");
-                                ShareUtil.cleanToken();
-                                AppUpdateUtil.restartApp();
-                            }
-                        }
-                    });
-
-        }else {
-            TaskTimeUtil.getInstance().getTimeAreaList().clear();
-            TaskTimeBean taskTimeBean = new TaskTimeBean();
-            taskTimeBean.setStartTime(startTime);
-            taskTimeBean.setEndTime(endTime);
-            taskTimeBean.setDelay((long) time);
-            if (TaskTimeUtil.getInstance().isTimeRight(taskTimeBean)){
-                if (TaskTimeUtil.getInstance().addTime(taskTimeBean)){
-                    ToastUtils.showToast("添加 成功");
-                }else {
-                    ToastUtils.showToast("该时间段与已有时间段冲突");
-                }
-            }else {
-                ToastUtils.showToast("结束时间应在开始时间后");
-            }
-        }
-    }
-
-    private void capture() {
-        new Thread(() -> {
-            CameraManager cameraManager = CameraManager.getInstance();
-            cameraManager.initCamera();
-            cameraManager.connectCamera();
-            cameraManager.captureExecute(AppContants.CaptureFrom.FROM_TASK);
+            //重启任务
+            TaskServiceUtil.resetPhotoTasks();
         }).start();
+    }
+
+    private void postLocalPicture(){
+        new Thread(() -> CapturePostUtil.findLocalPic()).start();
     }
 
     /**

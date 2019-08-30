@@ -79,6 +79,12 @@ public class TaskTimeUtil {
         setMinList();
     }
 
+    public void clearTimes(){ //清除本地所有时间
+        List<TaskTimeBean> taskTimeBeans = new ArrayList<>();
+        setTimeAreaList(taskTimeBeans);
+        setMinList();
+    }
+
     private void setMinList() {
         List<TaskTimeBean> taskTimeBeans = new ArrayList<>();
         taskTimeBeans.addAll(getTimeAreaList());

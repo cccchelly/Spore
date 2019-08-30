@@ -1,9 +1,5 @@
 [
     {
-        "merged": "/Users/apple/Documents/project/WitAgN/F:\\WitAgN\\updatelibrary\\build\\intermediates\\res\\merged\\debug\\color-v23\\abc_tint_seek_thumb.xml",
-        "source": "/Users/apple/Documents/project/WitAgN/C:\\Users\\Administrator\\.android\\build-cache\\0666f2fab653f41bedb032f005bf6676bc3839ba\\output\\res\\color-v23\\abc_tint_seek_thumb.xml"
-    },
-    {
         "merged": "/Users/apple/Documents/project/WitAgN/updatelibrary/build/intermediates/res/merged/debug/color-v23/abc_tint_edittext.xml",
         "source": "/Users/apple/.android/build-cache/3daae79f83429561b325abfbdc2a452dc638ada7/output/res/color-v23/abc_tint_edittext.xml"
     },
@@ -12,20 +8,8 @@
         "source": "/Users/apple/.android/build-cache/3daae79f83429561b325abfbdc2a452dc638ada7/output/res/color-v23/abc_btn_colored_borderless_text_material.xml"
     },
     {
-        "merged": "/Users/apple/Documents/project/WitAgN/F:\\WitAgN\\updatelibrary\\build\\intermediates\\res\\merged\\debug\\color-v23\\abc_tint_btn_checkable.xml",
-        "source": "/Users/apple/Documents/project/WitAgN/C:\\Users\\Administrator\\.android\\build-cache\\0666f2fab653f41bedb032f005bf6676bc3839ba\\output\\res\\color-v23\\abc_tint_btn_checkable.xml"
-    },
-    {
-        "merged": "/Users/apple/Documents/project/WitAgN/F:\\WitAgN\\updatelibrary\\build\\intermediates\\res\\merged\\debug\\color-v23\\abc_tint_default.xml",
-        "source": "/Users/apple/Documents/project/WitAgN/C:\\Users\\Administrator\\.android\\build-cache\\0666f2fab653f41bedb032f005bf6676bc3839ba\\output\\res\\color-v23\\abc_tint_default.xml"
-    },
-    {
         "merged": "/Users/apple/Documents/project/WitAgN/updatelibrary/build/intermediates/res/merged/debug/color-v23/abc_tint_spinner.xml",
         "source": "/Users/apple/.android/build-cache/3daae79f83429561b325abfbdc2a452dc638ada7/output/res/color-v23/abc_tint_spinner.xml"
-    },
-    {
-        "merged": "/Users/apple/Documents/project/WitAgN/F:\\WitAgN\\updatelibrary\\build\\intermediates\\res\\merged\\debug\\color-v23\\abc_tint_spinner.xml",
-        "source": "/Users/apple/Documents/project/WitAgN/C:\\Users\\Administrator\\.android\\build-cache\\0666f2fab653f41bedb032f005bf6676bc3839ba\\output\\res\\color-v23\\abc_tint_spinner.xml"
     },
     {
         "merged": "/Users/apple/Documents/project/WitAgN/updatelibrary/build/intermediates/res/merged/debug/color-v23/abc_tint_switch_thumb.xml",
@@ -36,24 +20,8 @@
         "source": "/Users/apple/.android/build-cache/3daae79f83429561b325abfbdc2a452dc638ada7/output/res/color-v23/abc_tint_default.xml"
     },
     {
-        "merged": "/Users/apple/Documents/project/WitAgN/F:\\WitAgN\\updatelibrary\\build\\intermediates\\res\\merged\\debug\\color-v23\\abc_color_highlight_material.xml",
-        "source": "/Users/apple/Documents/project/WitAgN/C:\\Users\\Administrator\\.android\\build-cache\\0666f2fab653f41bedb032f005bf6676bc3839ba\\output\\res\\color-v23\\abc_color_highlight_material.xml"
-    },
-    {
         "merged": "/Users/apple/Documents/project/WitAgN/updatelibrary/build/intermediates/res/merged/debug/color-v23/abc_tint_switch_track.xml",
         "source": "/Users/apple/.android/build-cache/3daae79f83429561b325abfbdc2a452dc638ada7/output/res/color-v23/abc_tint_switch_track.xml"
-    },
-    {
-        "merged": "/Users/apple/Documents/project/WitAgN/F:\\WitAgN\\updatelibrary\\build\\intermediates\\res\\merged\\debug\\color-v23\\abc_btn_colored_borderless_text_material.xml",
-        "source": "/Users/apple/Documents/project/WitAgN/C:\\Users\\Administrator\\.android\\build-cache\\0666f2fab653f41bedb032f005bf6676bc3839ba\\output\\res\\color-v23\\abc_btn_colored_borderless_text_material.xml"
-    },
-    {
-        "merged": "/Users/apple/Documents/project/WitAgN/F:\\WitAgN\\updatelibrary\\build\\intermediates\\res\\merged\\debug\\color-v23\\abc_tint_switch_thumb.xml",
-        "source": "/Users/apple/Documents/project/WitAgN/C:\\Users\\Administrator\\.android\\build-cache\\0666f2fab653f41bedb032f005bf6676bc3839ba\\output\\res\\color-v23\\abc_tint_switch_thumb.xml"
-    },
-    {
-        "merged": "/Users/apple/Documents/project/WitAgN/F:\\WitAgN\\updatelibrary\\build\\intermediates\\res\\merged\\debug\\color-v23\\abc_tint_edittext.xml",
-        "source": "/Users/apple/Documents/project/WitAgN/C:\\Users\\Administrator\\.android\\build-cache\\0666f2fab653f41bedb032f005bf6676bc3839ba\\output\\res\\color-v23\\abc_tint_edittext.xml"
     },
     {
         "merged": "/Users/apple/Documents/project/WitAgN/updatelibrary/build/intermediates/res/merged/debug/color-v23/abc_tint_seek_thumb.xml",
@@ -66,9 +34,5 @@
     {
         "merged": "/Users/apple/Documents/project/WitAgN/updatelibrary/build/intermediates/res/merged/debug/color-v23/abc_color_highlight_material.xml",
         "source": "/Users/apple/.android/build-cache/3daae79f83429561b325abfbdc2a452dc638ada7/output/res/color-v23/abc_color_highlight_material.xml"
-    },
-    {
-        "merged": "/Users/apple/Documents/project/WitAgN/F:\\WitAgN\\updatelibrary\\build\\intermediates\\res\\merged\\debug\\color-v23\\abc_tint_switch_track.xml",
-        "source": "/Users/apple/Documents/project/WitAgN/C:\\Users\\Administrator\\.android\\build-cache\\0666f2fab653f41bedb032f005bf6676bc3839ba\\output\\res\\color-v23\\abc_tint_switch_track.xml"
     }
 ]

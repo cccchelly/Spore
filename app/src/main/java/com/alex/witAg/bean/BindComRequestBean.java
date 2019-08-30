@@ -37,6 +37,15 @@ public class BindComRequestBean {
     private int photoMark;
     private int photoQuality;
     private String photoStart;
+    private String type;
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 
     public String getAccountName() {
         return accountName;
