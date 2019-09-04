@@ -13,7 +13,7 @@ import com.catchbest.KSJ_WB_MODE;
 public interface AppContants {
 
     String API_BASE_URL     = "http://pk.meishifulu.cn";   //线上
-    String MQTT_BASE_URL     = "tcp://pk.meishifulu.cn:1883";   //mqtt
+    String MQTT_BASE_URL     = "tcp://47.111.161.31:1883";   //mqtt
     //String API_BASE_URL     = "http://172.168.21.33:9007";   //本地zy
     //String API_BASE_URL     = "http://172.16.23.179:9007";   //本地xxl
     String CHECK_VERSION_URL = API_BASE_URL+"update/index";

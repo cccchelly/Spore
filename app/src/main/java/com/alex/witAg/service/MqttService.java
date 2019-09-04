@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.alex.witAg.App;
+import com.alex.witAg.AppContants;
 import com.alex.witAg.base.BaseObserver;
 import com.alex.witAg.base.BaseResponse;
 import com.alex.witAg.bean.MqttMsgBean;
@@ -21,6 +22,7 @@ import com.alex.witAg.taskqueue.SeralTask;
 import com.alex.witAg.taskqueue.TaskQueue;
 import com.alex.witAg.utils.AppMsgUtil;
 import com.alex.witAg.utils.CapturePostUtil;
+import com.alex.witAg.utils.LogUtil;
 import com.alex.witAg.utils.ShareUtil;
 import com.alex.witAg.utils.TaskServiceUtil;
 import com.alex.witAg.utils.TaskTimeUtil;
@@ -56,13 +58,13 @@ public class MqttService extends Service {
 
     //mosquitto_sub -t HelloWord -h 59.110.240.44
 
-    private String host = "tcp://192.168.1.33:1883";
-    //private String host = AppContants.MQTT_BASE_URL;
+    //private String host = "tcp://192.168.1.33:1883";
+    private String host = AppContants.MQTT_BASE_URL;
     private String userName = "admin";
     private String passWord = "password";
-    //private static String myTopic = "Device/DFS/cid" + AppMsgUtil.getIMEI(App.getAppContext());
-    private static String myTopic = "MQTT/TOPIC";
-    private String clientId = "test";
+    private static String myTopic = "Device/new2/cid" + AppMsgUtil.getIMEI(App.getAppContext());
+    //private static String myTopic = "MQTT/TOPIC";
+    private String clientId = "test"+ AppMsgUtil.getIMEI(App.getAppContext());
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
@@ -73,7 +75,7 @@ public class MqttService extends Service {
     public void onCreate() {
         super.onCreate();
         taskQueue = TaskQueue.getInstance();
-        Log.i(TAG, "mqttService---Start");
+        Log.i(TAG, "==mqttService---Start---topic="+myTopic);
         init();
     }
 
@@ -184,24 +186,26 @@ public class MqttService extends Service {
 
         @Override
         public void messageArrived(String topic, MqttMessage message) throws Exception {
-            client.messageArrivedComplete(message.getId(),message.getQos());
 
             String str1 = new String(message.getPayload());
-            String str2 = topic + ";qos:" + message.getQos() + ";retained:" + message.isRetained();
-            Log.i(TAG, "id:"+message.getId()+",messageArrived:" + str1);
+            String str2 = topic + ";qos:" + message.getQos() + ";==retained:" + message.isRetained();
+            Log.i(TAG, "==id:"+message.getId()+",messageArrived:" + str1);
             Log.i(TAG, str2);
             postMqttMsg(str1);
             dealMsg(str1);
+
+            client.messageArrivedComplete(message.getId(),message.getQos());
         }
 
         @Override
         public void deliveryComplete(IMqttDeliveryToken arg0) {
-
+            LogUtil.i("==deliveryComplete");
         }
 
         @Override
         public void connectionLost(Throwable arg0) {
             // 失去连接
+            LogUtil.i("==connectionLost："+arg0.getMessage());
         }
     };
 
