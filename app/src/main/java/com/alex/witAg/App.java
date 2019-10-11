@@ -2,13 +2,13 @@ package com.alex.witAg;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.provider.SyncStateContract;
 import android.support.multidex.MultiDexApplication;
 import android.text.TextUtils;
 
 import com.alex.witAg.camreaproxy.CameraManager;
 import com.alex.witAg.camreaproxy.HkCamera;
 import com.alex.witAg.camreaproxy.KsjCamera;
+import com.alex.witAg.camreaproxy.SporeCamera;
 import com.alex.witAg.ui.test.CrashUtil;
 import com.alex.witAg.utils.MyLifecycleHandler;
 import com.alex.witAg.utils.ShareUtil;
@@ -23,7 +23,6 @@ import com.squareup.leakcanary.RefWatcher;
 import com.umeng.commonsdk.UMConfigure;
 
 import org.litepal.LitePal;
-import org.litepal.LitePalApplication;
 
 /**
  * Created by dth
@@ -58,14 +57,16 @@ public class App extends MultiDexApplication {
         registerActivityLifecycleCallbacks(new MyLifecycleHandler());
     }
 
-    private void initCameraType() {//如果本地没有设置过相机类型，默认给一个类型
+    private void initCameraType() {//如果本地没有设置过相机类型，默认给一个类型  孢子捕捉仪设置usb相机
         if (TextUtils.isEmpty(ShareUtil.getCameraType())){
-            CameraManager.getInstance().setCamera(new KsjCamera());
-            ShareUtil.saveCameraType(AppContants.CameraType.KSJ);
+            CameraManager.getInstance().setCamera(new SporeCamera());
+            ShareUtil.saveCameraType(AppContants.CameraType.USB);
         }else if (TextUtils.equals(ShareUtil.getCameraType(),AppContants.CameraType.KSJ)){
             CameraManager.getInstance().setCamera(new KsjCamera());
         }else if (TextUtils.equals(ShareUtil.getCameraType(),AppContants.CameraType.HKVision)){
             CameraManager.getInstance().setCamera(new HkCamera());
+        }else if (TextUtils.equals(ShareUtil.getCameraType(),AppContants.CameraType.USB)){
+            CameraManager.getInstance().setCamera(new SporeCamera());
         }
     }
 

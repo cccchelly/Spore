@@ -27,6 +27,7 @@ import com.alex.witAg.camreaproxy.CameraManager;
 import com.alex.witAg.camreaproxy.HkCamera;
 import com.alex.witAg.camreaproxy.KsjCamera;
 import com.alex.witAg.camreaproxy.OnCaptureListener;
+import com.alex.witAg.camreaproxy.SporeCamera;
 import com.alex.witAg.presenter.TakePhotoPresenter;
 import com.alex.witAg.presenter.viewImpl.ITakePhotoView;
 import com.alex.witAg.taskqueue.SeralTask;
@@ -147,7 +148,7 @@ public class TakePhotoFragment extends BaseFragment<TakePhotoPresenter, ITakePho
 
     private void initCameraSpinner() {
         setPreviewFun();
-        mSpinnerCamera.attachDataSource(new LinkedList<>(Arrays.asList("凯视佳", "海康威视")));
+        mSpinnerCamera.attachDataSource(new LinkedList<>(Arrays.asList("凯视佳", "海康威视","孢子捕捉仪")));
         mSpinnerCamera.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -159,6 +160,10 @@ public class TakePhotoFragment extends BaseFragment<TakePhotoPresenter, ITakePho
                     case 1:
                         CameraManager.getInstance().setCamera(new HkCamera());
                         ShareUtil.saveCameraType(AppContants.CameraType.HKVision);
+                        break;
+                    case 2:
+                        CameraManager.getInstance().setCamera(new SporeCamera());
+                        ShareUtil.saveCameraType(AppContants.CameraType.USB);
                         break;
                 }
                 setPreviewFun();
@@ -177,12 +182,15 @@ public class TakePhotoFragment extends BaseFragment<TakePhotoPresenter, ITakePho
             case AppContants.CameraType.HKVision:
                 mSpinnerCamera.setSelectedIndex(1);
                 break;
+            case AppContants.CameraType.USB:
+                mSpinnerCamera.setSelectedIndex(2);
+                break;
         }
 
     }
 
     private void setPreviewFun() {
-        if (TextUtils.equals(ShareUtil.getCameraType(), AppContants.CameraType.KSJ)) {
+        if (TextUtils.equals(ShareUtil.getCameraType(), AppContants.CameraType.KSJ) || TextUtils.equals(ShareUtil.getCameraType(), AppContants.CameraType.USB)) {
             mTvPreview.setVisibility(View.VISIBLE);
         } else {
             mTvPreview.setVisibility(View.GONE);
@@ -281,9 +289,16 @@ public class TakePhotoFragment extends BaseFragment<TakePhotoPresenter, ITakePho
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case  R.id.control_tv_preview:
+                if (TextUtils.equals(ShareUtil.getCameraType(), AppContants.CameraType.USB)) {
+                ARouter.getInstance()
+                        .build(AppContants.ARouterUrl.SporeShowActivity)
+                        .navigation();
+            }else {
+
                 ARouter.getInstance()
                         .build(AppContants.ARouterUrl.PreviewActivity)
                         .navigation();
+                }
                 break;
             case R.id.takephoto_tv_post: //上传本地照片
                 new Thread(new Runnable() {

@@ -1,11 +1,11 @@
 <component name="libraryTable">
   <library name="Gradle: com.android.support:support-core-ui:25.4.0@aar">
     <ANNOTATIONS>
-      <root url="jar://$USER_HOME$/.android/build-cache/3315e06ae3a2075c0e51afa72167f8c2cc27a8f1/output/annotations.zip!/" />
+      <root url="jar://$USER_HOME$/.android/build-cache/076f8771b924815d5822e609c61f4d7db232bbf3/output/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
-      <root url="file://$USER_HOME$/.android/build-cache/3315e06ae3a2075c0e51afa72167f8c2cc27a8f1/output/res" />
-      <root url="jar://$USER_HOME$/.android/build-cache/3315e06ae3a2075c0e51afa72167f8c2cc27a8f1/output/jars/classes.jar!/" />
+      <root url="jar://$USER_HOME$/.android/build-cache/076f8771b924815d5822e609c61f4d7db232bbf3/output/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.android/build-cache/076f8771b924815d5822e609c61f4d7db232bbf3/output/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

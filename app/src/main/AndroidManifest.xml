@@ -47,6 +47,8 @@
         android:persistent="true"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ui.activity.SporeShowActivity"></activity>
+
         <service
             android:name="com.taobao.sophix.aidl.DownloadService"
             android:exported="true">
@@ -89,8 +91,7 @@
         <activity
             android:name=".ui.activity.MainActivity"
             android:launchMode="singleTop"
-            android:screenOrientation="landscape">
-        </activity>
+            android:screenOrientation="landscape"></activity>
         <activity
             android:name=".ui.activity.LoginActivity"
             android:screenOrientation="landscape" />
@@ -109,13 +110,11 @@
             </intent-filter>
         </receiver>
         -->
-        <service
-            android:name=".service.LampTaskService">
+        <service android:name=".service.LampTaskService">
             <intent-filter>
                 <action android:name="lamptask" />
             </intent-filter>
         </service>
-
         <service android:name=".service.CaptureService">
             <intent-filter>
                 <action android:name="capture" />

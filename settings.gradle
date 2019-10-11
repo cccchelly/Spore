@@ -1,1 +1,1 @@
-include ':app', ':SerialPortLibrary', ':sdk', ':updatelibrary'
+include ':app', ':SerialPortLibrary', ':sdk', ':updatelibrary', ':libusbcamera'

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="/Users/apple/Documents/project/Spore/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="/Users/apple/Documents/project/Spore/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_5f2e1eb6142afd381eee217f844f70060d79084e/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/apple/.gradle/caches/modules-2/files-2.1/io.reactivex/rxjava/1.1.6/2586312cd2b8a511e4c6236736f5a039fc0f2273/rxjava-1.1.6.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="2586312cd2b8a511e4c6236736f5a039fc0f2273">
+        <dex dex="/Users/apple/Documents/project/Spore/app/build/intermediates/transforms/dex/debug/folders/1000/10/rxjava-1.1.6_50f278e9f4934d6e988437c8ac929834c6e6b50e/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/apple/Documents/project/Spore/sdk/build/intermediates/bundles/default/libs/PlayerSDK.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="1fe75f1d6824be24b75406c12ad001d93d51593b">
+        <dex dex="/Users/apple/Documents/project/Spore/app/build/intermediates/transforms/dex/debug/folders/1000/8/PlayerSDK_cbe4fbc0a0ceecfe0a0bad58879aed933b53e717/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/apple/Documents/project/Spore/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="d9b3891422e29c43aace1e9cb3fcf6c3f0c11294">
+        <dex dex="/Users/apple/Documents/project/Spore/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_d5a41e81577ecdedbf1a12533fc3bd9b1ed23214/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/apple/Documents/project/Spore/sdk/build/intermediates/bundles/default/libs/jna.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="42460e8d0f7b9b7deeaa2ffb43f8078c0c3dde07">
+        <dex dex="/Users/apple/Documents/project/Spore/app/build/intermediates/transforms/dex/debug/folders/1000/8/jna_df1f5059617f20c0db8dbbb5e7d99546244016a7/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/apple/Documents/project/Spore/sdk/build/intermediates/bundles/default/libs/HCNetSDK.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="ed1559382606225e7eb3ec52d60fb2ee3f6db611">
+        <dex dex="/Users/apple/Documents/project/Spore/app/build/intermediates/transforms/dex/debug/folders/1000/8/HCNetSDK_9ebb50eb363a666b2788d7276ab4b26be6109d15/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/apple/Documents/project/Spore/sdk/build/intermediates/bundles/default/libs/AudioEngineSDK.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="f275d27f1a156af62c62ff5c78379af7d7038255">
+        <dex dex="/Users/apple/Documents/project/Spore/app/build/intermediates/transforms/dex/debug/folders/1000/8/AudioEngineSDK_8db62fc0654a471961c09f89fd3eb26ecd07e89e/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/apple/Documents/project/Spore/app/src/main/KSJAndroidLibs/android/alicloud-android-utils-1.1.3.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="3891ba3f096bf9dccf95bb13bac19ad6ddbed4c8">
+        <dex dex="/Users/apple/Documents/project/Spore/app/build/intermediates/transforms/dex/debug/folders/1000/2/alicloud-android-utils-1.1.3_c564e8054a16b428d98af550e23f8b2b0be7e428/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/apple/Documents/project/Spore/app/src/main/KSJAndroidLibs/android/utdid4all-1.1.5.3_proguard.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="989c3bb13060da1e3154bfe00236f76453a2725f">
+        <dex dex="/Users/apple/Documents/project/Spore/app/build/intermediates/transforms/dex/debug/folders/1000/2/utdid4all-1.1.5.3_proguard_9e4fd7b1790c8ea56b5f9572e4c938b5439d4a21/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/apple/.android/build-cache/eb7d90012556f08d1f3632b6dd7c1c64e2e514ac/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="507d9fba52fd41a3c7118419be6217cbc4593e7a">
+        <dex dex="/Users/apple/Documents/project/Spore/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_56c7ce4a4343009df95ab773cd3e74c0cc487745/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/apple/.android/build-cache/826e05ffd19e977f1e4f4dc1ecf7974a9f25244a/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="5a2386ad9bfff580b206a7fe305cdccd00798159">
+        <dex dex="/Users/apple/Documents/project/Spore/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_544842437c28fec6735215e724265fb00e92a4c4/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/apple/Documents/project/Spore/app/src/main/KSJAndroidLibs/android/sophix.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="88792386fce463c6d9f7087020497facf29cebb6">
+        <dex dex="/Users/apple/Documents/project/Spore/app/build/intermediates/transforms/dex/debug/folders/1000/2/sophix_9fc0ad1d2ee5eec99a78d9b2f4f54ee7ebc337b7/classes.dex" />
+    </item>
+
+</items>

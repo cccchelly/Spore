@@ -88,12 +88,14 @@ public interface AppContants {
         String DEBUG_ACTIVITY = "/foundation/debug_activity";
         String PreviewActivity = "/foundation/PreviewActivity";
         String ShowCaptureActivity = "/foundation/ShowCaptureActivity";
+        String SporeShowActivity = "/foundation/SporeShowActivity";
     }
     String KEY_PIC_BYTES_TAKE_PHOTO = "bytes_take_photo";
 
     interface CameraType{ //相机类型
         String KSJ = "KSJ"; //凯视佳相机
         String HKVision = "HKVision"; //海康威视
+        String USB = "USB"; //初代孢子显微镜(Usb相机)
 
     }
 

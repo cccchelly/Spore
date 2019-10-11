@@ -10,8 +10,7 @@ import android.util.Log;
 
 import com.alex.witAg.App;
 import com.alex.witAg.AppContants;
-import com.alex.witAg.taskqueue.SeralTask;
-import com.alex.witAg.taskqueue.TaskQueue;
+import com.alex.witAg.camreaproxy.CameraManager;
 import com.alex.witAg.utils.TaskTimeUtil;
 import com.alex.witAg.utils.ToastUtils;
 
@@ -31,6 +30,8 @@ public class CaptureService extends Service {
     };
 
     private boolean flagStop = false;
+
+    CameraManager cameraManager;
 
 
     @Nullable
@@ -81,8 +82,24 @@ public class CaptureService extends Service {
     }
 
     private void startPhotoTask(){
-        toastOnMain("发送请求准备执行拍照流程");
-        TaskQueue.getInstance().add(new SeralTask(AppContants.commands.kaishipaizhao));
+        cameraManager = CameraManager.getInstance();
+        cameraManager.initCamera();
+        cameraManager.connectCamera();
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        cameraManager.captureExecute(AppContants.CaptureFrom.FROM_TASK);
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+
+        //toastOnMain("发送请求准备执行拍照流程");
+        //TaskQueue.getInstance().add(new SeralTask(AppContants.commands.kaishipaizhao));
     }
 
 

@@ -30,6 +30,7 @@ import com.alex.witAg.camreaproxy.CameraManager;
 import com.alex.witAg.camreaproxy.HkCamera;
 import com.alex.witAg.camreaproxy.KsjCamera;
 import com.alex.witAg.camreaproxy.OnCaptureListener;
+import com.alex.witAg.camreaproxy.SporeCamera;
 import com.alex.witAg.presenter.ControlPresenter;
 import com.alex.witAg.presenter.viewImpl.IControlView;
 import com.alex.witAg.taskqueue.SeralTask;
@@ -147,7 +148,7 @@ public class ControlFragment extends BaseFragment<ControlPresenter, IControlView
 
     private void initCameraSpinner() {
         setPreviewFun();
-        mSpinnerCamera.attachDataSource(new LinkedList<>(Arrays.asList("凯视佳", "海康威视")));
+        mSpinnerCamera.attachDataSource(new LinkedList<>(Arrays.asList("凯视佳", "海康威视","孢子捕捉仪")));
         mSpinnerCamera.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -159,6 +160,10 @@ public class ControlFragment extends BaseFragment<ControlPresenter, IControlView
                     case 1:
                         CameraManager.getInstance().setCamera(new HkCamera());
                         ShareUtil.saveCameraType(AppContants.CameraType.HKVision);
+                        break;
+                    case 2:
+                        CameraManager.getInstance().setCamera(new SporeCamera());
+                        ShareUtil.saveCameraType(AppContants.CameraType.USB);
                         break;
                 }
                 setPreviewFun();
@@ -176,6 +181,9 @@ public class ControlFragment extends BaseFragment<ControlPresenter, IControlView
                 break;
             case AppContants.CameraType.HKVision:
                 mSpinnerCamera.setSelectedIndex(1);
+                break;
+            case AppContants.CameraType.USB:
+                mSpinnerCamera.setSelectedIndex(2);
                 break;
         }
 

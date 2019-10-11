@@ -39,7 +39,7 @@ public class BindCompanyPresenter extends BasePresenter<IBindCompanyView> {
             requestBean.setName(name);
             requestBean.setPhone(tel);
             requestBean.setPassword(pass);
-            requestBean.setType("3"); //新型测报灯
+            requestBean.setType("4"); //孢子捕捉仪
             /*requestBean.setLatitude("1111111");
             requestBean.setLongitude("2222222");
             requestBean.setPhotoInterval(1);
